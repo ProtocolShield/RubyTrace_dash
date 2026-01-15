@@ -1,0 +1,9 @@
+{
+  "custom_sources": {
+    "test": {
+      "name": "Test Source",
+      "url": "https://example.com",
+      "type": "custom"
+    }
+  }
+}

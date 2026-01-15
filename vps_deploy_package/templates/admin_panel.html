@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin API Configuration Panel</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <h1>API Configuration Panel</h1>
+        <a href="/admin/configure-apis" class="btn btn-secondary">Manage APIs</a>
+        <a href="/admin/bots" class="btn btn-primary">Bot Management</a>
+        <a href="/admin" class="btn btn-secondary">Dashboard</a>
+        <a href="/admin/users" class="btn btn-secondary">Manage Users</a>
+        <a href="/admin/security/logs" class="btn btn-secondary">Security Logs</a>
+    </div>
+    <div class="sidebar">
+        <h2>Admin Menu</h2>
+        <ul>
+            <li><a href="/admin">Dashboard</a></li>
+            <li><a href="/admin/configure-apis">Manage APIs</a></li>
+            <li><a href="/admin/bots">Bot Management</a></li>
+            <li><a href="/admin/users">Manage Users</a></li>
+            <li><a href="/admin/security/logs">Security Logs</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <!-- Bot Management Quick Access -->
+        <div style="background: linear-gradient(135deg, #1f2a4a 0%, #9370db 100%); color: white; padding: 30px; border-radius: 16px; margin-bottom: 30px; text-align: center; box-shadow: 0 12px 40px rgba(147, 112, 219, 0.4); border: 2px solid #9370db;">
+            <h2 style="margin: 0 0 15px 0; color: white; font-size: 2.5rem;">🤖 OSINT Bot Management</h2>
+            <p style="margin: 0 0 25px 0; font-size: 18px; color: white;">Control your Surface Web, Deep Web, Dark Web, and OSINT Feed bots</p>
+            <a href="/admin/bots" style="display: inline-block; background: linear-gradient(135deg, #9370db, #8a2be2); color: white; padding: 20px 40px; text-decoration: none; border-radius: 12px; font-size: 20px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(147, 112, 219, 0.5); text-transform: uppercase; letter-spacing: 1px;">
+                🚀 Go to Bot Management
+            </a>
+            <p style="margin: 15px 0 0 0; font-size: 14px; color: white;">Click the button above to access the comprehensive bot control interface</p>
+        </div>
+
+        <h2>Manage API Keys</h2>
+        <form id="api-config-form">
+            <label for="service">API Service Name:</label>
+            <input type="text" id="service" name="service" required>
+            <label for="api-key">API Key:</label>
+            <input type="text" id="api-key" name="api-key" required>
+            <button type="submit">Add API Key</button>
+        </form>
+        <div id="api-keys-list">
+            <h3>Existing API Keys</h3>
+            <ul id="api-keys"></ul>
+        </div>
+    </div>
+    
+    <!-- Floating Bot Management Button -->
+    <div style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;">
+        <a href="/admin/bots" style="display: block; background: linear-gradient(135deg, #9370db, #8a2be2); color: white; padding: 15px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; box-shadow: 0 8px 25px rgba(147, 112, 219, 0.5); transition: all 0.3s ease; text-align: center; min-width: 60px;">
+            <div style="font-size: 24px;">🤖</div>
+            <div style="font-size: 12px; margin-top: 5px;">BOTS</div>
+        </a>
+    </div>
+    
+         <!-- Bots & Data Sources Control Section -->
+ <section id="bots-control" style="margin-top:24px;">
+   <h2 style="color: #ffffff;">Bots & Data Sources</h2>
+   <div style="display:flex;gap:24px;flex-wrap:wrap;">
+     <div style="flex:1;min-width:320px;border:2px solid #9370db;padding:16px;border-radius:16px; background: rgba(31, 42, 74, 0.9); box-shadow: 0 8px 32px rgba(147, 112, 219, 0.2);">
+       <h3 style="color: #ffffff;">Bot Status</h3>
+       <pre id="bot-status" style="background:rgba(31, 42, 74, 0.8);padding:12px;border-radius:8px;overflow:auto;max-height:220px;color: #e0e0e0;border: 1px solid #9370db;">Loading...</pre>
+       <div style="display:flex;gap:8px;flex-wrap:wrap;">
+         <button onclick="startBot('surface')" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Start Surface</button>
+         <button onclick="stopBot('surface')" style="background: linear-gradient(135deg, #f56565, #e53e3e); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Stop Surface</button>
+         <button onclick="startBot('deep')" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Start Deep</button>
+         <button onclick="stopBot('deep')" style="background: linear-gradient(135deg, #f56565, #e53e3e); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Stop Deep</button>
+         <button onclick="startBot('dark')" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Start Dark</button>
+         <button onclick="stopBot('dark')" style="background: linear-gradient(135deg, #f56565, #e53e3e); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Stop Dark</button>
+         <button onclick="startBot('osint')" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Start OSINT</button>
+         <button onclick="stopBot('osint')" style="background: linear-gradient(135deg, #f56565, #e53e3e); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Stop OSINT</button>
+         <button onclick="refreshStatus()" style="background: linear-gradient(135deg, #4299e1, #3182ce); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Refresh</button>
+       </div>
+       <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+         <button onclick="runCycle('surface','surface')" style="background: linear-gradient(135deg, #ed8936, #dd6b20); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Run Surface Cycle</button>
+         <button onclick="runCycle('deep','deep')" style="background: linear-gradient(135deg, #ed8936, #dd6b20); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Run Deep Cycle</button>
+         <button onclick="runCycle('dark','dark')" style="background: linear-gradient(135deg, #ed8936, #dd6b20); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Run Dark Cycle</button>
+         <button onclick="runCycle('osint','osint')" style="background: linear-gradient(135deg, #ed8936, #dd6b20); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Run OSINT Cycle</button>
+       </div>
+     </div>
+     <div style="flex:1;min-width:320px;border:2px solid #9370db;padding:16px;border-radius:16px; background: rgba(31, 42, 74, 0.9); box-shadow: 0 8px 32px rgba(147, 112, 219, 0.2);">
+       <h3 style="color: #ffffff;">Data Sources</h3>
+       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+         <button onclick="loadDataSources()" style="background: linear-gradient(135deg, #9370db, #8a2be2); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Refresh Sources</button>
+       </div>
+       <pre id="datasources" style="background:rgba(31, 42, 74, 0.8);padding:12px;border-radius:8px;overflow:auto;max-height:220px;color: #e0e0e0;border: 1px solid #9370db;">Loading...</pre>
+       <form id="add-ds" onsubmit="return addDataSource(event)" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+         <input name="name" placeholder="Name" required style="background: rgba(31, 42, 74, 0.8); border: 1px solid #9370db; color: #e0e0e0; padding: 8px; border-radius: 8px;" />
+         <input name="url" placeholder="URL" required style="background: rgba(31, 42, 74, 0.8); border: 1px solid #9370db; color: #e0e0e0; padding: 8px; border-radius: 8px;" />
+         <select name="source_type" style="background: rgba(31, 42, 74, 0.8); border: 1px solid #9370db; color: #e0e0e0; padding: 8px; border-radius: 8px;">
+           <option value="surface">surface</option>
+           <option value="deep">deep</option>
+           <option value="dark">dark</option>
+           <option value="osint">osint</option>
+         </select>
+         <input name="category" placeholder="Category (forum/news/pastebin/social/etc.)" required style="background: rgba(31, 42, 74, 0.8); border: 1px solid #9370db; color: #e0e0e0; padding: 8px; border-radius: 8px;" />
+         <select name="risk_level" style="background: rgba(31, 42, 74, 0.8); border: 1px solid #9370db; color: #e0e0e0; padding: 8px; border-radius: 8px;">
+           <option value="low">low</option>
+           <option value="medium">medium</option>
+           <option value="high">high</option>
+           <option value="extreme">extreme</option>
+         </select>
+         <input name="scrape_interval" type="number" placeholder="Interval (min)" value="60" style="background: rgba(31, 42, 74, 0.8); border: 1px solid #9370db; color: #e0e0e0; padding: 8px; border-radius: 8px;" />
+         <button type="submit" style="grid-column:1/-1; background: linear-gradient(135deg, #9370db, #8a2be2); border: none; color: white; padding: 12px; border-radius: 8px; font-weight: 600;">Add Data Source</button>
+       </form>
+     </div>
+   </div>
+ </section>
+    <script>
+        document.getElementById('api-config-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const service = document.getElementById('service').value;
+            const apiKey = document.getElementById('api-key').value;
+
+            // Add API key logic here (e.g., send to backend)
+            console.log(`Adding API Key for ${service}: ${apiKey}`);
+        });
+
+        // Fetch existing API keys and display them
+        async function fetchApiKeys() {
+            const response = await fetch('/api/config/api_keys');
+            const apiKeys = await response.json();
+            const apiKeysList = document.getElementById('api-keys');
+            apiKeysList.innerHTML = '';
+            apiKeys.forEach(api => {
+                const li = document.createElement('li');
+                li.textContent = `${api.service}: ${api.key}`;
+                apiKeysList.appendChild(li);
+            });
+        }
+
+        fetchApiKeys();
+    </script>
+<script>
+async function refreshStatus(){
+  try{
+    const res = await fetch('/api/bots');
+    const data = await res.json();
+    document.getElementById('bot-status').textContent = JSON.stringify(data, null, 2);
+  }catch(e){
+    document.getElementById('bot-status').textContent = 'Failed to load status: '+e;
+  }
+}
+async function startBot(type){
+  await fetch(`/api/bots/${type}/start`, {method:'POST'});
+  refreshStatus();
+}
+async function stopBot(type){
+  await fetch(`/api/bots/${type}/stop`, {method:'POST'});
+  refreshStatus();
+}
+async function runCycle(botType, sourceType){
+  await fetch('/api/bots/run-cycle', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({bot_type:botType, source_type:sourceType})});
+}
+async function loadDataSources(){
+  const res = await fetch('/api/datasources');
+  const data = await res.json();
+  document.getElementById('datasources').textContent = JSON.stringify(data, null, 2);
+}
+async function addDataSource(e){
+  e.preventDefault();
+  const fd = new FormData(document.getElementById('add-ds'));
+  const payload = Object.fromEntries(fd.entries());
+  payload.enabled = true;
+  payload.scrape_interval = Number(payload.scrape_interval||60);
+  payload.config = {};
+  const res = await fetch('/api/datasources', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+  await loadDataSources();
+  return false;
+}
+refreshStatus();
+loadDataSources();
+</script>
+</body>
+</html>

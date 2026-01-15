@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin API Configuration Panel</title>
+    <link rel="stylesheet" href="../static/dashboard_styles.css">
+</head>
+<body data-theme="dark">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>OSINT Platform</h1>
+                    <p>Admin Dashboard</p>
+                </div>
+            </div>
+
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link active" data-section="dashboard" data-tooltip="Dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/configure-apis" class="nav-link" data-tooltip="Manage APIs">
+                        <i class="fas fa-cogs"></i>
+                        <span>Manage APIs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/bots" class="nav-link" data-tooltip="Bot Management">
+                        <i class="fas fa-robot"></i>
+                        <span>Bot Management</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/users" class="nav-link" data-tooltip="Manage Users">
+                        <i class="fas fa-users"></i>
+                        <span>Manage Users</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/security/logs" class="nav-link" data-tooltip="Security Logs">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security Logs</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="user-details" id="user-details">
+                    <div class="user-name">Admin</div>
+                    <div class="user-role">Administrator</div>
+                </div>
+            </div>
+            <button class="logout-btn" id="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <form class="top-bar-search" id="top-bar-search" onsubmit="event.preventDefault();">
+                    <input type="text" id="top-search-input" placeholder="Search..." autocomplete="off" />
+                    <button type="submit" id="top-search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="top-bar-right">
+                <div class="api-status" id="api-status">
+                    <div class="status-dot"></div>
+                    <span class="status-text">API Online</span>
+                </div>
+
+                <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+
+                <div class="notifications" id="notifications">
+                    <button class="notifications-btn" id="notifications-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">0</span>
+                    </button>
+
+                    <div class="notifications-dropdown" id="notifications-dropdown">
+                        <div class="notifications-header">
+                            <h3>Notifications</h3>
+                            <button class="mark-all-read">Mark all as read</button>
+                        </div>
+                        <div class="notifications-list" id="notifications-list">
+                            <!-- Notifications will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <div class="content-wrapper">
+        <!-- Bot Management Quick Access -->
+        <div style="background: linear-gradient(135deg, #1f2a4a 0%, #9370db 100%); color: white; padding: 30px; border-radius: 16px; margin-bottom: 30px; text-align: center; box-shadow: 0 12px 40px rgba(147, 112, 219, 0.4); border: 2px solid #9370db;">
+            <h2 style="margin: 0 0 15px 0; color: white; font-size: 2.5rem;">🤖 OSINT Bot Management</h2>
+            <p style="margin: 0 0 25px 0; font-size: 18px; color: white;">Control your Surface Web, Deep Web, Dark Web, and OSINT Feed bots</p>
+            <a href="/admin/bots" style="display: inline-block; background: linear-gradient(135deg, #9370db, #8a2be2); color: white; padding: 20px 40px; text-decoration: none; border-radius: 12px; font-size: 20px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(147, 112, 219, 0.5); text-transform: uppercase; letter-spacing: 1px;">
+                🚀 Go to Bot Management
+            </a>
+            <p style="margin: 15px 0 0 0; font-size: 14px; color: white;">Click the button above to access the comprehensive bot control interface</p>
+        </div>
+
+        <h2>Manage API Keys</h2>
+        <form id="api-config-form">
+            <label for="service">API Service Name:</label>
+            <input type="text" id="service" name="service" required>
+            <label for="api-key">API Key:</label>
+            <input type="text" id="api-key" name="api-key" required>
+            <button type="submit">Add API Key</button>
+        </form>
+        <div id="api-keys-list">
+            <h3>Existing API Keys</h3>
+            <ul id="api-keys"></ul>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="../static/dashboard_script.js"></script>
+</body>
+</html>
+    
+         <!-- Bots & Data Sources Control Section -->
+ <section id="bots-control" style="margin-top:24px;">
+   <h2 style="color: #ffffff;">Bots & Data Sources</h2>
+   <div style="display:flex;gap:24px;flex-wrap:wrap;">
+     <div style="flex:1;min-width:320px;border:2px solid #9370db;padding:16px;border-radius:16px; background: rgba(31, 42, 74, 0.9); box-shadow: 0 8px 32px rgba(147, 112, 219, 0.2);">
+       <h3 style="color: #ffffff;">Bot Status</h3>
+       <pre id="bot-status" style="background:rgba(31, 42, 74, 0.8);padding:12px;border-radius:8px;overflow:auto;max-height:220px;color: #e0e0e0;border: 1px solid #9370db;">Loading...</pre>
+       <div style="display:flex;gap:8px;flex-wrap:wrap;">
+         <button onclick="startBot('surface')" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Start Surface</button>
+         <button onclick="stopBot('surface')" style="background: linear-gradient(135deg, #f56565, #e53e3e); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Stop Surface</button>
+         <button onclick="startBot('deep')" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Start Deep</button>
+         <button onclick="stopBot('deep')" style="background: linear-gradient(135deg, #f56565, #e53e3e); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Stop Deep</button>
+         <button onclick="startBot('dark')" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Start Dark</button>
+         <button onclick="stopBot('dark')" style="background: linear-gradient(135deg, #f56565, #e53e3e); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Stop Dark</button>
+         <button onclick="startBot('osint')" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Start OSINT</button>
+         <button onclick="stopBot('osint')" style="background: linear-gradient(135deg, #f56565, #e53e3e); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Stop OSINT</button>
+         <button onclick="refreshStatus()" style="background: linear-gradient(135deg, #4299e1, #3182ce); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Refresh</button>
+       </div>
+       <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+         <button onclick="runCycle('surface','surface')" style="background: linear-gradient(135deg, #ed8936, #dd6b20); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Run Surface Cycle</button>
+         <button onclick="runCycle('deep','deep')" style="background: linear-gradient(135deg, #ed8936, #dd6b20); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Run Deep Cycle</button>
+         <button onclick="runCycle('dark','dark')" style="background: linear-gradient(135deg, #ed8936, #dd6b20); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Run Dark Cycle</button>
+         <button onclick="runCycle('osint','osint')" style="background: linear-gradient(135deg, #ed8936, #dd6b20); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Run OSINT Cycle</button>
+       </div>
+     </div>
+     <div style="flex:1;min-width:320px;border:2px solid #9370db;padding:16px;border-radius:16px; background: rgba(31, 42, 74, 0.9); box-shadow: 0 8px 32px rgba(147, 112, 219, 0.2);">
+       <h3 style="color: #ffffff;">📊 Collected Data Quick View</h3>
+       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+         <button onclick="loadDataStats()" style="background: linear-gradient(135deg, #9370db, #8a2be2); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Refresh Stats</button>
+         <button onclick="window.open('/admin/bots', '_blank')" style="background: linear-gradient(135deg, #28a745, #20c997); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">📋 View Full Data</button>
+       </div>
+       <div id="data-stats-quick" style="background:rgba(31, 42, 74, 0.8);padding:12px;border-radius:8px;color: #e0e0e0;border: 1px solid #9370db;">
+         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+           <div style="text-align: center;">
+             <h4 style="color: #9370db; margin: 0;">0</h4>
+             <small style="color: #b19cd9;">Raw Data Items</small>
+           </div>
+           <div style="text-align: center;">
+             <h4 style="color: #9370db; margin: 0;">0</h4>
+             <small style="color: #b19cd9;">Last 24h</small>
+           </div>
+           <div style="text-align: center;">
+             <h4 style="color: #9370db; margin: 0;">0</h4>
+             <small style="color: #b19cd9;">Entities</small>
+           </div>
+           <div style="text-align: center;">
+             <h4 style="color: #9370db; margin: 0;">0</h4>
+             <small style="color: #b19cd9;">Relationships</small>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+ <!-- Data Sources Management Section -->
+ <section id="data-sources-control" style="margin-top:24px;">
+   <h2 style="color: #ffffff;">📋 Data Sources Management</h2>
+   <div style="display:flex;gap:24px;flex-wrap:wrap;">
+     <div style="flex:1;min-width:320px;border:2px solid #9370db;padding:16px;border-radius:16px; background: rgba(31, 42, 74, 0.9); box-shadow: 0 8px 32px rgba(147, 112, 219, 0.2);">
+       <h3 style="color: #ffffff;">Add/Edit Data Source</h3>
+       <form id="add-ds" onsubmit="return addDataSource(event)">
+         <input type="hidden" id="ds-id" name="id">
+         <div style="margin-bottom:8px;">
+           <label for="ds-name" style="color:#ffffff;">Name:</label>
+           <input type="text" id="ds-name" name="name" required style="width:100%;padding:8px;border:1px solid #9370db;border-radius:4px;background:rgba(255,255,255,0.1);color:#ffffff;">
+         </div>
+         <div style="margin-bottom:8px;">
+           <label for="ds-url" style="color:#ffffff;">URL:</label>
+           <input type="url" id="ds-url" name="url" required style="width:100%;padding:8px;border:1px solid #9370db;border-radius:4px;background:rgba(255,255,255,0.1);color:#ffffff;">
+         </div>
+         <div style="margin-bottom:8px;">
+           <label for="ds-source-type" style="color:#ffffff;">Source Type:</label>
+           <select id="ds-source-type" name="source_type" required style="width:100%;padding:8px;border:1px solid #9370db;border-radius:4px;background:rgba(255,255,255,0.1);color:#ffffff;">
+             <option value="forum">Forum</option>
+             <option value="news">News</option>
+             <option value="pastebin">Pastebin</option>
+             <option value="darkweb">Darkweb</option>
+           </select>
+         </div>
+         <div style="margin-bottom:8px;">
+           <label for="ds-category" style="color:#ffffff;">Category:</label>
+           <input type="text" id="ds-category" name="category" style="width:100%;padding:8px;border:1px solid #9370db;border-radius:4px;background:rgba(255,255,255,0.1);color:#ffffff;">
+         </div>
+         <div style="margin-bottom:8px;">
+           <label for="ds-risk-level" style="color:#ffffff;">Risk Level:</label>
+           <select id="ds-risk-level" name="risk_level" required style="width:100%;padding:8px;border:1px solid #9370db;border-radius:4px;background:rgba(255,255,255,0.1);color:#ffffff;">
+             <option value="low">Low</option>
+             <option value="medium">Medium</option>
+             <option value="high">High</option>
+           </select>
+         </div>
+         <div style="margin-bottom:8px;">
+           <label for="ds-enabled" style="color:#ffffff;">Enabled:</label>
+           <input type="checkbox" id="ds-enabled" name="enabled" checked style="margin-left:8px;">
+         </div>
+         <div style="margin-bottom:8px;">
+           <label for="ds-interval" style="color:#ffffff;">Scrape Interval (minutes):</label>
+           <input type="number" id="ds-interval" name="scrape_interval" value="60" min="15" style="width:100%;padding:8px;border:1px solid #9370db;border-radius:4px;background:rgba(255,255,255,0.1);color:#ffffff;">
+         </div>
+         <div style="display:flex;gap:8px;">
+           <button type="submit" style="background: linear-gradient(135deg, #48bb78, #38a169); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Save</button>
+           <button type="button" onclick="clearForm()" style="background: linear-gradient(135deg, #6c757d, #5a6268); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Clear</button>
+         </div>
+       </form>
+     </div>
+     <div style="flex:1;min-width:320px;border:2px solid #9370db;padding:16px;border-radius:16px; background: rgba(31, 42, 74, 0.9); box-shadow: 0 8px 32px rgba(147, 112, 219, 0.2);">
+       <h3 style="color: #ffffff;">Existing Data Sources</h3>
+       <div style="display:flex;gap:8px;margin-bottom:8px;">
+         <button onclick="loadDataSources()" style="background: linear-gradient(135deg, #4299e1, #3182ce); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Refresh</button>
+         <button onclick="syncSources()" style="background: linear-gradient(135deg, #ed8936, #dd6b20); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600;">Sync from Sources</button>
+       </div>
+       <pre id="datasources" style="background:rgba(31, 42, 74, 0.8);padding:12px;border-radius:8px;overflow:auto;max-height:400px;color: #e0e0e0;border: 1px solid #9370db;">Loading...</pre>
+     </div>
+   </div>
+ </section>
+
+    <script>
+        document.getElementById('api-config-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const service = document.getElementById('service').value;
+            const apiKey = document.getElementById('api-key').value;
+
+            // Add API key logic here (e.g., send to backend)
+            console.log(`Adding API Key for ${service}: ${apiKey}`);
+        });
+
+        // Fetch existing API keys and display them
+        async function fetchApiKeys() {
+            const response = await fetch('/api/config/api_keys');
+            const apiKeys = await response.json();
+            const apiKeysList = document.getElementById('api-keys');
+            apiKeysList.innerHTML = '';
+            apiKeys.forEach(api => {
+                const li = document.createElement('li');
+                li.textContent = `${api.service}: ${api.key}`;
+                apiKeysList.appendChild(li);
+            });
+        }
+
+        fetchApiKeys();
+
+        // Data Sources Management JS
+
+        async function loadDataSources() {
+            try {
+                const res = await fetch('/api/datasources');
+                const data = await res.json();
+                if (data.success === false) {
+                    document.getElementById('datasources').textContent = 'Failed to load data sources: ' + (data.error || 'Unknown error');
+                    return;
+                }
+                // Display data sources in a formatted way with edit/delete buttons
+                const container = document.getElementById('datasources');
+                if (!data || !Array.isArray(data)) {
+                    container.textContent = JSON.stringify(data, null, 2);
+                    return;
+                }
+                let html = '';
+                data.forEach(ds => {
+                    html += `
+                    <div style="border:1px solid #9370db; padding:8px; margin-bottom:8px; border-radius:8px; background:rgba(255,255,255,0.05); color:#e0e0e0;">
+                        <strong>${ds.name}</strong> (${ds.source_type})<br>
+                        URL: <a href="${ds.url}" target="_blank" style="color:#8a2be2;">${ds.url}</a><br>
+                        Category: ${ds.category || '-'}<br>
+                        Risk Level: ${ds.risk_level || '-'}<br>
+                        Enabled: ${ds.enabled ? 'Yes' : 'No'}<br>
+                        Scrape Interval: ${ds.scrape_interval} minutes<br>
+                        <button onclick="editDataSource(${ds.id})" style="margin-right:8px; background: linear-gradient(135deg, #4299e1, #3182ce); border: none; color: white; padding: 4px 8px; border-radius: 4px; font-weight: 600;">Edit</button>
+                        <button onclick="deleteDataSource(${ds.id})" style="background: linear-gradient(135deg, #dc3545, #c82333); border: none; color: white; padding: 4px 8px; border-radius: 4px; font-weight: 600;">Delete</button>
+                    </div>`;
+                });
+                container.innerHTML = html;
+            } catch (e) {
+                document.getElementById('datasources').textContent = 'Error loading data sources: ' + e.message;
+            }
+        }
+
+        async function addDataSource(e) {
+            e.preventDefault();
+            const form = document.getElementById('add-ds');
+            const formData = new FormData(form);
+            const payload = {};
+            formData.forEach((value, key) => {
+                if (key === 'enabled') {
+                    payload[key] = form.elements[key].checked;
+                } else if (key === 'scrape_interval') {
+                    payload[key] = Number(value);
+                } else if (key === 'id' && value === '') {
+                    // skip empty id for new data source
+                } else {
+                    payload[key] = value;
+                }
+            });
+
+            try {
+                let response;
+                if (payload.id) {
+                    // Update existing data source
+                    response = await fetch(`/api/datasources/${payload.id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                } else {
+                    // Create new data source
+                    response = await fetch('/api/datasources', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                }
+                const result = await response.json();
+                if (result.success) {
+                    alert('Data source saved successfully');
+                    clearForm();
+                    loadDataSources();
+                } else {
+                    alert('Error saving data source: ' + (result.error || 'Unknown error'));
+                }
+            } catch (e) {
+                alert('Error saving data source: ' + e.message);
+            }
+            return false;
+        }
+
+        function clearForm() {
+            const form = document.getElementById('add-ds');
+            form.reset();
+            form.elements['id'].value = '';
+            form.elements['enabled'].checked = true;
+            form.elements['scrape_interval'].value = 60;
+        }
+
+        async function editDataSource(id) {
+            try {
+                const res = await fetch(`/api/datasources/${id}`);
+                const ds = await res.json();
+                if (!ds) {
+                    alert('Data source not found');
+                    return;
+                }
+                const form = document.getElementById('add-ds');
+                form.elements['id'].value = ds.id;
+                form.elements['name'].value = ds.name;
+                form.elements['url'].value = ds.url;
+                form.elements['source_type'].value = ds.source_type;
+                form.elements['category'].value = ds.category || '';
+                form.elements['risk_level'].value = ds.risk_level || 'low';
+                form.elements['enabled'].checked = ds.enabled;
+                form.elements['scrape_interval'].value = ds.scrape_interval || 60;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (e) {
+                alert('Error loading data source: ' + e.message);
+            }
+        }
+
+        async function deleteDataSource(id) {
+            if (!confirm('Are you sure you want to delete this data source?')) return;
+            try {
+                const res = await fetch(`/api/datasources/${id}`, { method: 'DELETE' });
+                const result = await res.json();
+                if (result.success) {
+                    alert('Data source deleted');
+                    loadDataSources();
+                } else {
+                    alert('Error deleting data source: ' + (result.error || 'Unknown error'));
+                }
+            } catch (e) {
+                alert('Error deleting data source: ' + e.message);
+            }
+        }
+
+        async function syncSources() {
+            try {
+                const res = await fetch('/api/sync-sources', { method: 'POST' });
+                const result = await res.json();
+                if (result.success) {
+                    alert('Sources synced successfully');
+                    loadDataSources();
+                } else {
+                    alert('Error syncing sources: ' + (result.error || 'Unknown error'));
+                }
+            } catch (e) {
+                alert('Error syncing sources: ' + e.message);
+            }
+        }
+
+        // Initial load
+        loadDataSources();
+    </script>
+<script>
+async function refreshStatus(){
+  try{
+    const res = await fetch('/api/bots');
+    const data = await res.json();
+    document.getElementById('bot-status').textContent = JSON.stringify(data, null, 2);
+  }catch(e){
+    document.getElementById('bot-status').textContent = 'Failed to load status: '+e;
+  }
+}
+async function startBot(type){
+  await fetch(`/api/bots/${type}/start`, {method:'POST'});
+  refreshStatus();
+}
+async function stopBot(type){
+  await fetch(`/api/bots/${type}/stop`, {method:'POST'});
+  refreshStatus();
+}
+async function runCycle(botType, sourceType){
+  await fetch('/api/bots/run-cycle', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({bot_type:botType, source_type:sourceType})});
+}
+async function loadDataSources(){
+  const res = await fetch('/api/datasources');
+  const data = await res.json();
+  document.getElementById('datasources').textContent = JSON.stringify(data, null, 2);
+}
+async function loadDataStats(){
+  try {
+    const res = await fetch('/api/data/stats');
+    const data = await res.json();
+    if (data.success) {
+      const stats = data.stats;
+      const container = document.getElementById('data-stats-quick');
+      container.innerHTML = `
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div style="text-align: center;">
+            <h4 style="color: #9370db; margin: 0;">${stats.total_raw_data || 0}</h4>
+            <small style="color: #b19cd9;">Raw Data Items</small>
+          </div>
+          <div style="text-align: center;">
+            <h4 style="color: #9370db; margin: 0;">${stats.last_24h || 0}</h4>
+            <small style="color: #b19cd9;">Last 24h</small>
+          </div>
+          <div style="text-align: center;">
+            <h4 style="color: #9370db; margin: 0;">${stats.total_entities || 0}</h4>
+            <small style="color: #b19cd9;">Entities</small>
+          </div>
+          <div style="text-align: center;">
+            <h4 style="color: #9370db; margin: 0;">${stats.total_relationships || 0}</h4>
+            <small style="color: #b19cd9;">Relationships</small>
+          </div>
+        </div>
+      `;
+    }
+  } catch (e) {
+    console.error('Failed to load data stats:', e);
+  }
+}
+async function addDataSource(e){
+  e.preventDefault();
+  const fd = new FormData(document.getElementById('add-ds'));
+  const payload = Object.fromEntries(fd.entries());
+  payload.enabled = true;
+  payload.scrape_interval = Number(payload.scrape_interval||60);
+  payload.config = {};
+  const res = await fetch('/api/datasources', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+  await loadDataSources();
+  return false;
+}
+refreshStatus();
+loadDataSources();
+loadDataStats();
+</script>
+</body>
+</html>

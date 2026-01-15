@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy OSINT Intelligence Platform</title>
+    <meta name="description" content="Advanced OSINT intelligence platform for privacy monitoring and threat analysis. Real-time data collection and analysis.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+    <link rel="alternate icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='new_homepage_styles.css') }}">
+</head>
+<body data-theme="dark">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name">OSINT Platform</span>
+                    <span class="brand-tagline">Intelligence Hub</span>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#intelligence" class="nav-link">Intelligence</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="api-status" id="api-status">
+                    <div class="status-dot"></div>
+                    <span class="status-text">API Status</span>
+                </div>
+                
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <div class="auth-buttons">
+                    <a href="{{ url_for('user_routes.login_page') }}" class="btn btn-outline">Login</a>
+                    <a href="{{ url_for('user_routes.register_page') }}" class="btn btn-primary">Register</a>
+                    <a href="/eng/login" class="btn btn-admin">Admin</a>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="grid-overlay"></div>
+            <div class="floating-elements">
+                <div class="element element-1"></div>
+                <div class="element element-2"></div>
+                <div class="element element-3"></div>
+                <div class="element element-4"></div>
+            </div>
+        </div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>Privacy-First Intelligence</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Advanced OSINT
+                    <span class="gradient-text">Intelligence Platform</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Real-time privacy monitoring and threat intelligence collection from public sources. 
+                    Advanced NLP analysis with comprehensive data insights for security professionals.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number" data-count="15000">0</div>
+                        <div class="stat-label">Data Points</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" data-count="24">0</div>
+                        <div class="stat-label">Sources</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" data-count="99">0</div>
+                        <div class="stat-label">% Uptime</div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="{{ url_for('user_routes.register_page') }}" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i>
+                        Get Started
+                    </a>
+                    <a href="#features" class="btn btn-outline btn-large">
+                        <i class="fas fa-play"></i>
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <div class="preview-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="preview-title">OSINT Dashboard</div>
+                    </div>
+                    <div class="preview-content">
+                        <div class="preview-chart">
+                            <canvas id="preview-chart"></canvas>
+                        </div>
+                        <div class="preview-metrics">
+                            <div class="metric">
+                                <div class="metric-icon"><i class="fas fa-eye"></i></div>
+                                <div class="metric-info">
+                                    <div class="metric-value">2,847</div>
+                                    <div class="metric-label">Threats Detected</div>
+                                </div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="metric-info">
+                                    <div class="metric-value">98.7%</div>
+                                    <div class="metric-label">Security Score</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Intelligence Features</h2>
+                <p class="section-description">
+                    Comprehensive tools for privacy monitoring and threat intelligence
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-title">Advanced Search</h3>
+                    <p class="feature-description">
+                        Powerful search capabilities across multiple data sources with real-time filtering and analysis.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Real-time</span>
+                        <span class="tag">Multi-source</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">NLP Analysis</h3>
+                    <p class="feature-description">
+                        Advanced natural language processing for sentiment analysis and keyword extraction.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">AI-Powered</span>
+                        <span class="tag">Sentiment</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="feature-title">Threat Mapping</h3>
+                    <p class="feature-description">
+                        Interactive threat visualization with geographical mapping and trend analysis.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Interactive</span>
+                        <span class="tag">Geo-mapping</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Alert System</h3>
+                    <p class="feature-description">
+                        Real-time alerts for keyword matches and threat indicators across monitored sources.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Instant</span>
+                        <span class="tag">Customizable</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="feature-title">Data Sources</h3>
+                    <p class="feature-description">
+                        Multiple data sources including forums, social media, and public repositories.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Multi-platform</span>
+                        <span class="tag">Scalable</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-description">
+                        Built with privacy in mind, ensuring secure data handling and anonymized collection.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Secure</span>
+                        <span class="tag">Anonymous</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intelligence Feed Preview -->
+    <section class="intelligence-preview" id="intelligence">
+        <div class="intelligence-container">
+            <div class="section-header">
+                <h2 class="section-title">Live Intelligence Feed</h2>
+                <p class="section-description">
+                    Real-time monitoring of privacy-related discussions and threats
+                </p>
+            </div>
+            
+            <div class="intelligence-dashboard">
+                <div class="dashboard-sidebar">
+                    <div class="filter-section">
+                        <h3>Sources</h3>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                HackerNews
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                Reddit
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                PrivacyGuides
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>Sentiment</h3>
+                        <div class="sentiment-filters">
+                            <button class="sentiment-btn positive">Positive</button>
+                            <button class="sentiment-btn neutral active">Neutral</button>
+                            <button class="sentiment-btn negative">Negative</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-main">
+                    <div class="intelligence-feed" id="intelligence-feed">
+                        <!-- Intelligence items will be loaded here -->
+                        <div class="feed-loading">
+                            <div class="loading-spinner"></div>
+                            <p>Loading intelligence feed...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="brand-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <div class="brand-text">
+                            <span class="brand-name">OSINT Platform</span>
+                            <span class="brand-tagline">Privacy Intelligence Hub</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Advanced OSINT intelligence platform for privacy monitoring and threat analysis.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Platform</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#intelligence">Intelligence</a></li>
+                        <li><a href="{{ url_for('user_routes.register_page') }}">Register</a></li>
+                        <li><a href="{{ url_for('user_routes.login_page') }}">Login</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 OSINT Platform. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Security</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='new_homepage_script.js') }}"></script>
+</body>
+</html>

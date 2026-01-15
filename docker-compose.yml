@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  osint-platform:
+    build: .
+    container_name: osint-platform
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://osint_user:secure_password_2024@postgres:5432/osint_db
+      - TOR_ENABLED=true
+      - TOR_SOCKS_PORT=9050
+      - FLASK_ENV=production
+      - SECRET_KEY=your-secret-key-change-in-production
+    depends_on:
+      - postgres
+      - tor
+    volumes:
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+      - ./data:/app/data
+    restart: unless-stopped
+    networks:
+      - osint-network
+
+  postgres:
+    image: postgres:15
+    container_name: osint-postgres
+    environment:
+      - POSTGRES_DB=osint_db
+      - POSTGRES_USER=osint_user
+      - POSTGRES_PASSWORD=secure_password_2024
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - osint-network
+
+  tor:
+    image: peterdavehello/tor-socks-proxy:latest
+    container_name: osint-tor
+    ports:
+      - "9050:9050"
+      - "9051:9051"
+    restart: unless-stopped
+    networks:
+      - osint-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: osint-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - osint-platform
+    restart: unless-stopped
+    networks:
+      - osint-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: osint-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - osint-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  osint-network:
+    driver: bridge

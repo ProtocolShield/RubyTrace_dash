@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy OSINT Dashboard</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-shield-alt me-2"></i>
+                Privacy OSINT Dashboard
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-view="posts">
+                            <i class="fas fa-newspaper me-1"></i> Posts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="crawler">
+                            <i class="fas fa-spider me-1"></i> Crawler
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="keywords">
+                            <i class="fas fa-key me-1"></i> Keywords
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="sources">
+                            <i class="fas fa-database me-1"></i> Sources
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="search-tools">
+                            <i class="fas fa-search me-1"></i> Search Tools
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="alerts">
+                            <i class="fas fa-bell me-1"></i> Alerts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="logs">
+                            <i class="fas fa-clipboard-list me-1"></i> Logs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="users">
+                            <i class="fas fa-users me-1"></i> Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="downloads">
+                            <i class="fas fa-download me-1"></i> Downloads
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="cve-monitor">
+                            <i class="fas fa-bug me-1"></i> CVE Monitor
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="threat-news">
+                            <i class="fas fa-newspaper me-1"></i> Threat News
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="tools-scripts">
+                            <i class="fas fa-tools me-1"></i> Tools & Scripts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="file-upload">
+                            <i class="fas fa-upload me-1"></i> File
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-view="settings">
+                            <i class="fas fa-cog me-1"></i> Settings
+                        </a>
+                    </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-view="bot-management">
+                    <i class="fas fa-robot me-1"></i> Bot Management
+                </a>
+            </li>
+                </ul>
+                <form class="d-flex" id="search-form">
+                    <input class="form-control me-2" type="search" placeholder="Search posts..." id="search-input">
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <div class="ms-3">
+                    <button id="logout-btn" class="btn btn-outline-danger">
+                        <i class="fas fa-sign-out-alt me-1"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Filter controls -->
+        <div class="row mb-4" id="filter-controls">
+            <div class="col-md-4">
+                <select class="form-select" id="source-filter">
+                    <option value="">All Sources</option>
+                    <!-- Sources will be populated dynamically -->
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select" id="sentiment-filter">
+                    <option value="">All Sentiments</option>
+                    <option value="positive">Positive</option>
+                    <option value="neutral">Neutral</option>
+                    <option value="negative">Negative</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select" id="posts-limit">
+                    <option value="10">10 posts</option>
+                    <option value="25">25 posts</option>
+                    <option value="50">50 posts</option>
+                    <option value="100">100 posts</option>
+                    <option value="">All posts</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Main content area -->
+        <div class="content-area">
+            <!-- Posts view -->
+            <div id="posts-view" class="view-section active-view">
+                <div class="row">
+                    <div class="col">
+                        <h2>Privacy-Related Posts</h2>
+                    </div>
+                    <div class="col-auto">
+                        <button id="refresh-btn" class="btn btn-primary">
+                            <i class="fas fa-sync-alt me-1"></i> Refresh
+                        </button>
+                        <button id="export-csv-btn" class="btn btn-success ms-2">
+                            <i class="fas fa-download me-1"></i> Export CSV
+                        </button>
+                    </div>
+                </div>
+                <div id="posts-container" class="mt-3">
+                    <!-- Posts will be populated dynamically -->
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keywords view -->
+            <div id="keywords-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2>Privacy Keywords</h2>
+                        <p>These keywords are used to filter content when scraping sources.</p>
+                    </div>
+                    <div class="col-auto">
+                        <button id="save-keywords-btn" class="btn btn-success">
+                            <i class="fas fa-save me-1"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div id="keywords-container" class="mb-3">
+                            <!-- Keywords will be populated dynamically -->
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="new-keyword-input" placeholder="Add a new keyword...">
+                            <button class="btn btn-primary" id="add-keyword-btn">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sources view -->
+            <div id="sources-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2>Data Sources</h2>
+                        <p>Configure and manage sources for privacy-related content.</p>
+                    </div>
+                    <div class="col-auto">
+                        <button id="add-source-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-source-modal">
+                            <i class="fas fa-plus me-1"></i> Add Source
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Main Sources Container -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0">Configured Sources</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="sources-container">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Default Sources -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0">Default Sources</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="default-sources-container">
+                            <!-- Default sources will be populated dynamically -->
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reddit Sources -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Reddit Subreddits</h5>
+                        <button id="edit-reddit-btn" class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#reddit-modal">
+                            <i class="fas fa-edit me-1"></i> Edit
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="reddit-sources-container">
+                            <!-- Reddit sources will be populated dynamically -->
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Custom Sources -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0">Custom Sources</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="custom-sources-container">
+                            <!-- Custom sources will be populated dynamically -->
+                            <p class="text-muted">No custom sources configured yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Search Tools View -->
+            <div id="search-tools-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2>Privacy OSINT Search Tools</h2>
+                        <p>Search for email addresses and phone numbers in public databases to check for potential privacy exposures.</p>
+                    </div>
+                </div>
+                
+                <!-- Email Search -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0"><i class="fas fa-envelope me-2"></i>Email Search</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">Search for an email address in data breaches, paste sites, and public forums.</p>
+                        
+                        <form id="email-search-form" class="mb-3">
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="email-input" placeholder="example@domain.com" required>
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search me-1"></i> Search
+                                </button>
+                            </div>
+                            <small class="form-text text-muted">This tool checks public data breach databases and paste sites.</small>
+                        </form>
+                        
+                        <div id="email-results" class="mt-4 d-none">
+                            <h6 class="border-bottom pb-2 mb-3">Search Results</h6>
+                            <div id="email-results-content">
+                                <!-- Results will be dynamically populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phone Number Search -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0"><i class="fas fa-phone me-2"></i>Phone Number Search</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">Search for a phone number in classifieds, spam databases, and public listings.</p>
+                        
+                        <form id="phone-search-form" class="mb-3">
+                            <div class="input-group">
+                                <input type="tel" class="form-control" id="phone-input" placeholder="+1 (555) 123-4567" required>
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search me-1"></i> Search
+                                </button>
+                            </div>
+                            <small class="form-text text-muted">Formats accepted: +1234567890, 123-456-7890, (123) 456-7890</small>
+                        </form>
+                        
+                        <div id="phone-results" class="mt-4 d-none">
+                            <h6 class="border-bottom pb-2 mb-3">Search Results</h6>
+                            <div id="phone-results-content">
+                                <!-- Results will be dynamically populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- API Keys Information -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0"><i class="fas fa-key me-2"></i>API Keys</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>For more accurate results, you can configure API keys for the following services:</p>
+                        <ul>
+                            <li><strong>Have I Been Pwned API</strong> - For more detailed breach information</li>
+                            <li><strong>NumVerify API</strong> - For advanced phone number validation and carrier detection</li>
+                        </ul>
+                        <p>
+                            <a href="#" class="btn btn-sm btn-primary" id="go-to-settings-btn">
+                                <i class="fas fa-cog me-1"></i> Configure API Keys
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Crawler View -->
+            <div id="crawler-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2>Enhanced Crawler System</h2>
+                        <p>Automated discovery and monitoring of surface web and dark web sites based on your keywords.</p>
+                    </div>
+                </div>
+                
+                <!-- Crawler Status -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Crawler Status</h5>
+                        <div>
+                            <button id="start-crawler-btn" class="btn btn-sm btn-success me-2">
+                                <i class="fas fa-play me-1"></i> Start
+                            </button>
+                            <button id="stop-crawler-btn" class="btn btn-sm btn-danger">
+                                <i class="fas fa-stop me-1"></i> Stop
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="crawler-status-container">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Manual Crawl -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0">Manual Crawl</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="manual-crawl-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="crawl-keywords" class="form-label">Keywords</label>
+                                    <input type="text" class="form-control" id="crawl-keywords" placeholder="privacy, data breach, leak" required>
+                                    <small class="form-text text-muted">Separate keywords with commas</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="crawl-type" class="form-label">Crawl Type</label>
+                                    <select class="form-select" id="crawl-type">
+                                        <option value="false">Surface Web</option>
+                                        <option value="true">Dark Web (Tor)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="fas fa-search me-1"></i> Start Crawl
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="mt-3">
+                            <button id="run-scraper-btn" class="btn btn-success">
+                                <i class="fas fa-sync me-1"></i> Run Content Scraper
+                            </button>
+                            <small class="form-text text-muted ms-2">Collect posts from all configured sources</small>
+                        </div>
+                        <div id="manual-crawl-results" class="mt-3 d-none">
+                            <h6>Crawl Results</h6>
+                            <div id="manual-crawl-content"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Discovered Sites -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0">Recently Discovered Sites</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="discovered-sites-container">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading discovered sites...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Downloads View -->
+            <div id="downloads-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2>Downloaded Files</h2>
+                        <p>Files automatically downloaded by the enhanced crawler system.</p>
+                    </div>
+                    <div class="col-auto">
+                        <button id="refresh-downloads-btn" class="btn btn-primary">
+                            <i class="fas fa-sync-alt me-1"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- File Collection Controls -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0">File Collection</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="file-collection-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="download-urls" class="form-label">URLs to Scan</label>
+                                    <textarea class="form-control" id="download-urls" rows="3" placeholder="https://example.com/documents&#10;https://another-site.com/files"></textarea>
+                                    <small class="form-text text-muted">One URL per line</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="file-keywords" class="form-label">File Keywords</label>
+                                    <input type="text" class="form-control" id="file-keywords" placeholder="classified, confidential, private" value="privacy,security,leak,breach">
+                                    <small class="form-text text-muted">Comma-separated keywords</small>
+                                </div>
+                                <div class="col-md-2 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-success w-100">
+                                        <i class="fas fa-download me-1"></i> Start Collection
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Tor Controls -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Tor Dark Web Access</h5>
+                        <div>
+                            <button id="start-tor-btn" class="btn btn-sm btn-success me-2">
+                                <i class="fas fa-play me-1"></i> Start Tor
+                            </button>
+                            <button id="stop-tor-btn" class="btn btn-sm btn-danger me-2">
+                                <i class="fas fa-stop me-1"></i> Stop Tor
+                            </button>
+                            <button id="darkweb-crawl-btn" class="btn btn-sm btn-warning">
+                                <i class="fas fa-user-secret me-1"></i> Dark Web Crawl
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="tor-status-container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="status-item">
+                                        <span class="fw-bold">Status:</span>
+                                        <span id="tor-status-text" class="badge bg-secondary">Checking...</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="status-item">
+                                        <span class="fw-bold">Port:</span>
+                                        <span id="tor-port">9050</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="status-item">
+                                        <span class="fw-bold">Control Port:</span>
+                                        <span id="tor-control-port">9051</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Downloads Summary -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0">Download Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <div class="metric">
+                                    <h4 id="total-files-count" class="text-primary">0</h4>
+                                    <p class="mb-0">Total Files</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="metric">
+                                    <h4 id="total-size-display" class="text-success">0 MB</h4>
+                                    <p class="mb-0">Total Size</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="metric">
+                                    <h4 id="file-types-count" class="text-info">0</h4>
+                                    <p class="mb-0">File Types</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div id="downloads-container">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Source Modal -->
+            <div class="modal fade" id="add-source-modal" tabindex="-1" aria-labelledby="add-source-modal-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="add-source-modal-label">Add New Source</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="add-source-form">
+                                <div class="mb-3">
+                                    <label for="source-type" class="form-label">Source Type</label>
+                                    <select class="form-select" id="source-type" required>
+                                        <option value="">Select a type</option>
+                                        <option value="reddit">Reddit Subreddit</option>
+                                        <option value="custom">Custom Source</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Reddit subreddit fields -->
+                                <div id="reddit-fields" style="display: none;">
+                                    <div class="mb-3">
+                                        <label for="subreddit-name" class="form-label">Subreddit Name</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">r/</span>
+                                            <input type="text" class="form-control" id="subreddit-name" placeholder="privacy">
+                                        </div>
+                                        <div class="form-text">Enter the subreddit name without the "r/" prefix.</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Custom source fields -->
+                                <div id="custom-fields" style="display: none;">
+                                    <div class="mb-3">
+                                        <label for="source-id" class="form-label">Source ID</label>
+                                        <input type="text" class="form-control" id="source-id" placeholder="my-custom-source">
+                                        <div class="form-text">A unique identifier for this source (lowercase, no spaces)</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="source-name" class="form-label">Source Name</label>
+                                        <input type="text" class="form-control" id="source-name" placeholder="My Custom Source">
+                                        <div class="form-text">The display name for this source</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="source-url" class="form-label">Source URL</label>
+                                        <input type="url" class="form-control" id="source-url" placeholder="https://example.com/privacy-feed">
+                                        <div class="form-text">The URL to scrape for privacy content</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="save-source-btn">Add Source</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Edit Reddit Modal -->
+            <div class="modal fade" id="reddit-modal" tabindex="-1" aria-labelledby="reddit-modal-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reddit-modal-label">Edit Reddit Subreddits</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Current Subreddits</label>
+                                <div id="reddit-edit-list" class="mb-3">
+                                    <!-- Subreddits will be populated dynamically -->
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new-subreddit" class="form-label">Add New Subreddit</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">r/</span>
+                                    <input type="text" class="form-control" id="new-subreddit" placeholder="cybersecurity">
+                                    <button class="btn btn-outline-primary" type="button" id="add-subreddit-btn">
+                                        <i class="fas fa-plus"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="save-subreddits-btn">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alerts View -->
+            <div id="alerts-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2>Keyword Alerts</h2>
+                        <p>Manage alerts for specific privacy-related keywords.</p>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-alert-modal">
+                            <i class="fas fa-plus me-1"></i> Add Alert
+                        </button>
+                        <button id="check-alerts-btn" class="btn btn-secondary ms-2">
+                            <i class="fas fa-bell me-1"></i> Check Alerts
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0">Active Alerts</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="alerts-container">
+                            <!-- Alerts will be populated dynamically -->
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="alert-results" class="mt-4 d-none">
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">Alert Check Results</h5>
+                        </div>
+                        <div class="card-body" id="alert-results-content">
+                            <!-- Alert check results will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logs View -->
+            <div id="logs-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2>Scraping Logs</h2>
+                        <p>Monitor scraping operations and track errors from data sources.</p>
+                    </div>
+                    <div class="col-auto">
+                        <button id="refresh-logs-btn" class="btn btn-primary">
+                            <i class="fas fa-sync-alt me-1"></i> Refresh
+                        </button>
+                        <button id="view-errors-btn" class="btn btn-danger ms-2">
+                            <i class="fas fa-exclamation-triangle me-1"></i> View Errors
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card mt-3">
+                    <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0" id="logs-header">All Scraping Logs</h5>
+                        <div>
+                            <select class="form-select form-select-sm" id="logs-source-filter" style="width: auto; display: inline-block;">
+                                <option value="">All Sources</option>
+                                <!-- Source options will be populated dynamically -->
+                            </select>
+                            <select class="form-select form-select-sm ms-2" id="logs-status-filter" style="width: auto; display: inline-block;">
+                                <option value="">All Status</option>
+                                <option value="success">Success</option>
+                                <option value="error">Error</option>
+                            </select>
+                            <select class="form-select form-select-sm ms-2" id="logs-limit" style="width: auto; display: inline-block;">
+                                <option value="25">25 logs</option>
+                                <option value="50" selected>50 logs</option>
+                                <option value="100">100 logs</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="logs-container">
+                            <!-- Logs will be populated dynamically -->
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="error-details-container" class="mt-4 d-none">
+                    <div class="card">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">Error Details</h5>
+                        </div>
+                        <div class="card-body" id="error-details-content">
+                            <!-- Error details will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Users View -->
+            <div id="users-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2>User Management</h2>
+                        <p>Manage user registrations and account approvals.</p>
+                    </div>
+                    <div class="col-auto">
+                        <button id="refresh-users-btn" class="btn btn-primary">
+                            <i class="fas fa-sync-alt me-1"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Pending Users -->
+                <div class="card mt-3">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="fas fa-clock me-2"></i>Pending Approvals
+                            <span id="pending-count" class="badge bg-dark ms-2">0</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="pending-users-container">
+                            <!-- Pending users will be populated dynamically -->
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- All Users -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0">
+                            <i class="fas fa-users me-2"></i>All Users
+                            <span id="total-users-count" class="badge bg-secondary ms-2">0</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <select class="form-select" id="user-status-filter">
+                                    <option value="">All Users</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="admin">Admins</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="user-search" placeholder="Search by username or email...">
+                            </div>
+                        </div>
+                        <div id="all-users-container">
+                            <!-- All users will be populated dynamically -->
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bot Management View -->
+            <div id="bot-management-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2 style="color: white"><i class="fas fa-robot me-2"></i>Bot Management</h2>
+                        <p style="color: white">Control your OSINT data collection bots and monitor their status.</p>
+                    </div>
+                    <div class="col-auto">
+                        <a href="/admin/bots" class="btn" style="background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; border: none;">
+                            <i class="fas fa-external-link-alt me-1"></i> Open Full Interface
+                        </a>
+                    </div>
+                </div>
+                 m
+                 
+                <!-- Bot Status Overview -->
+                <div class="row mt-4">
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white;">
+                            <div class="card-body text-center">
+                                <i class="fas fa-globe fa-2x mb-2"></i>
+                                <h5>Surface Web Bot</h5>
+                                <div id="surface-bot-status" class="badge bg-light text-dark">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card" style="background: linear-gradient(135deg, #7c3aed, #a855f7); color: white;">
+                            <div class="card-body text-center">
+                                <i class="fas fa-search fa-2x mb-2"></i>
+                                <h5>Deep Web Bot</h5>
+                                <div id="deep-bot-status" class="badge bg-light text-dark">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card" style="background: linear-gradient(135deg, #1e40af, #6366f1); color: white;">
+                            <div class="card-body text-center">
+                                <i class="fas fa-moon fa-2x mb-2"></i>
+                                <h5>Dark Web Bot</h5>
+                                <div id="dark-bot-status" class="badge bg-light text-dark">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card" style="background: linear-gradient(135deg, #8b5cf6, #c084fc); color: white;">
+                            <div class="card-body text-center">
+                                <i class="fas fa-rss fa-2x mb-2"></i>
+                                <h5>OSINT Feed Bot</h5>
+                                <div id="osint-bot-status" class="badge bg-light text-dark">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="card mt-4" style="border: 1px solid #1e3a8a;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white;">
+                        <h5 class="mb-0"><i class="fas fa-play me-2"></i>Quick Actions</h5>
+                    </div>
+                    <div class="card-body" style="background: linear-gradient(135deg, #f8fafc, #e2e8f0);">
+                        <div class="row">
+                            <div class="col-md-3 mb-2">
+                                <button class="btn w-100" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; border: none;" onclick="startBot('surface')">
+                                    <i class="fas fa-play me-1"></i> Start Surface
+                                </button>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <button class="btn w-100" style="background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; border: none;" onclick="startBot('deep')">
+                                    <i class="fas fa-play me-1"></i> Start Deep
+                                </button>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <button class="btn w-100" style="background: linear-gradient(135deg, #1e40af, #6366f1); color: white; border: none;" onclick="startBot('dark')">
+                                    <i class="fas fa-play me-1"></i> Start Dark
+                                </button>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <button class="btn w-100" style="background: linear-gradient(135deg, #8b5cf6, #c084fc); color: white; border: none;" onclick="startBot('osint')">
+                                    <i class="fas fa-play me-1"></i> Start OSINT
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3 mb-2">
+                                <button class="btn w-100" style="background: linear-gradient(135deg, #dc2626, #ef4444); color: white; border: none;" onclick="stopBot('surface')">
+                                    <i class="fas fa-stop me-1"></i> Stop Surface
+                                </button>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <button class="btn w-100" style="background: linear-gradient(135deg, #dc2626, #ef4444); color: white; border: none;" onclick="stopBot('deep')">
+                                    <i class="fas fa-stop me-1"></i> Stop Deep
+                                </button>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <button class="btn w-100" style="background: linear-gradient(135deg, #dc2626, #ef4444); color: white; border: none;" onclick="stopBot('dark')">
+                                    <i class="fas fa-stop me-1"></i> Stop Dark
+                                </button>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <button class="btn w-100" style="background: linear-gradient(135deg, #dc2626, #ef4444); color: white; border: none;" onclick="stopBot('osint')">
+                                    <i class="fas fa-stop me-1"></i> Stop OSINT
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Sources Summary -->
+                <div class="card mt-4" style="border: 1px solid #1e3a8a;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white;">
+                        <h5 class="mb-0"><i class="fas fa-database me-2"></i>Data Sources</h5>
+                    </div>
+                    <div class="card-body" style="background: linear-gradient(135deg, #f8fafc, #e2e8f0);">
+                        <div id="data-sources-summary">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border" style="color: #1e3a8a;" role="status">
+                                    <span class="visually-hidden">Loading data sources...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings View -->
+            <div id="settings-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2>Settings</h2>
+                        <p>Configure API keys and application settings.</p>
+                    </div>
+                </div>
+                
+                <!-- API Keys Management -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-key me-2"></i>API Keys</h5>
+                        <div>
+                            <a href="/admin/configure-apis" target="_blank" class="btn btn-sm btn-outline-info" title="Advanced API Manager">
+                                <i class="fas fa-plug me-1"></i> API Manager
+                            </a>
+                            <button id="reload-apis-btn" class="btn btn-sm btn-warning ms-2" title="Reload API Integrations">
+                                <i class="fas fa-sync-alt me-1"></i> Reload APIs
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Manage API keys for external services used by the application. These keys enhance the functionality of various features.</p>
+
+                        <div id="api-keys-container" class="mt-3">
+                            <!-- API keys will be loaded here -->
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6 class="mt-4 mb-3">Add New API Key</h6>
+                        <form id="add-api-key-form">
+                            <div class="mb-3">
+                                <label for="service-select" class="form-label">Service</label>
+                                <select id="service-select" class="form-select" required>
+                                    <option value="">Select a service</option>
+                                    <option value="haveibeenpwned">Have I Been Pwned</option>
+                                    <option value="numverify">NumVerify</option>
+                                    <option value="reddit_client_id">Reddit Client ID</option>
+                                    <option value="reddit_client_secret">Reddit Client Secret</option>
+                                    <option value="reddit_user_agent">Reddit User Agent</option>
+                                    <option value="custom">Custom Service</option>
+                                </select>
+                            </div>
+                            <div id="custom-service-field" class="mb-3 d-none">
+                                <label for="custom-service-input" class="form-label">Custom Service Name</label>
+                                <input type="text" class="form-control" id="custom-service-input" placeholder="Enter service name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="api-key-input" class="form-label">API Key</label>
+                                <input type="password" class="form-control" id="api-key-input" placeholder="Enter API key" required>
+                                <small class="form-text text-muted">Your API key is securely stored in the database.</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="save-api-key-btn">
+                                <i class="fas fa-save me-1"></i> Save API Key
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Schedule Management -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0"><i class="fas fa-clock me-2"></i>Scraping Schedule</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Manage the automatic scraping schedule. Configure how often the system collects data from configured sources.</p>
+                        
+                        <div id="schedule-info" class="mt-3 mb-4">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading schedule information...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h6 class="mb-3">Update Schedule Interval</h6>
+                        <form id="update-schedule-form" class="row g-3 align-items-end">
+                            <div class="col-md-6">
+                                <label for="schedule-interval" class="form-label">Scraping Interval (minutes)</label>
+                                <input type="number" class="form-control" id="schedule-interval" min="15" step="5" required>
+                                <small class="text-muted">Minimum interval is 15 minutes</small>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary" id="save-schedule-btn">
+                                    <i class="fas fa-save me-1"></i> Update Schedule
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Cache Management -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0"><i class="fas fa-database me-2"></i>Cache Management</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Manage application cache settings.</p>
+                        <button id="clear-search-cache-btn" class="btn btn-warning">
+                            <i class="fas fa-trash me-1"></i> Clear Search Cache
+                        </button>
+                        <small class="d-block mt-2 text-muted">This will clear cached results from email and phone searches.</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Upload View -->
+            <div id="file-upload-view" class="view-section">
+                <div class="row">
+                    <div class="col">
+                        <h2><i class="fas fa-upload me-2"></i>File Upload</h2>
+                        <p>Upload files with automatic malware scanning and risk assessment.</p>
+                    </div>
+                    <div class="col-auto">
+                        <button id="refresh-uploads-btn" class="btn btn-primary">
+                            <i class="fas fa-sync-alt me-1"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Upload Form -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark">
+                        <h5 class="mb-0"><i class="fas fa-cloud-upload-alt me-2"></i>Upload File</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="upload-form" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="upload-file" class="form-label">Select File</label>
+                                    <input type="file" class="form-control" id="upload-file" required>
+                                    <small class="form-text text-muted">Allowed types: CSV, JSON, ZIP, PDF, DOCX, etc.</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="uploader-id" class="form-label">Uploader ID (optional)</label>
+                                    <input type="number" class="form-control" id="uploader-id" placeholder="User ID">
+                                </div>
+                                <div class="col-md-3 d-flex align-items-end">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="is-public">
+                                        <label class="form-check-label" for="is-public">
+                                            Public File
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-upload me-1"></i> Upload File
+                            </button>
+                        </form>
+                        <div id="upload-result" class="mt-3 d-none">
+                            <div class="alert" id="upload-alert"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Uploaded Files List -->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-list me-2"></i>Uploaded Files</h5>
+                        <div>
+                            <select class="form-select form-select-sm" id="uploads-risk-filter" style="width: auto; display: inline-block;">
+                                <option value="">All Risk Levels</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                                <option value="critical">Critical</option>
+                            </select>
+                            <select class="form-select form-select-sm ms-2" id="uploads-limit" style="width: auto; display: inline-block;">
+                                <option value="10">10 files</option>
+                                <option value="25" selected>25 files</option>
+                                <option value="50">50 files</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="uploads-container">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading uploads...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CVE Monitor View -->
+    <div id="cve-monitor-view" class="view-section">
+        <div class="row">
+            <div class="col">
+                <h2><i class="fas fa-bug me-2"></i>CVE Monitor</h2>
+                <p>Monitor and track Common Vulnerabilities and Exposures (CVE) with auto-tagging per IP/service.</p>
+            </div>
+            <div class="col-auto">
+                <button id="refresh-cve-btn" class="btn btn-primary">
+                    <i class="fas fa-sync-alt me-1"></i> Refresh
+                </button>
+                <button id="add-cve-btn" class="btn btn-success ms-2">
+                    <i class="fas fa-plus me-1"></i> Add CVE
+                </button>
+            </div>
+        </div>
+        
+        <!-- CVE Filters -->
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <select class="form-select" id="cve-severity-filter">
+                    <option value="">All Severities</option>
+                    <option value="critical">Critical</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="cve-search" placeholder="Search CVE ID or title...">
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="cve-limit">
+                    <option value="50">50 items</option>
+                    <option value="100">100 items</option>
+                    <option value="200">200 items</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button id="cve-filter-btn" class="btn btn-outline-secondary w-100">
+                    <i class="fas fa-filter me-1"></i> Apply Filters
+                </button>
+            </div>
+        </div>
+        
+        <!-- CVE Statistics -->
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <div class="card bg-danger text-white">
+                    <div class="card-body text-center">
+                        <h5 id="critical-count">0</h5>
+                        <small>Critical</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-dark">
+                    <div class="card-body text-center">
+                        <h5 id="high-count">0</h5>
+                        <small>High</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body text-center">
+                        <h5 id="medium-count">0</h5>
+                        <small>Medium</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body text-center">
+                        <h5 id="low-count">0</h5>
+                        <small>Low</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CVE List -->
+        <div class="card">
+            <div class="card-body">
+                <div id="cve-container">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading CVEs...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Threat News View -->
+    <div id="threat-news-view" class="view-section">
+        <div class="row">
+            <div class="col">
+                <h2><i class="fas fa-newspaper me-2"></i>Threat News Feed</h2>
+                <p>Real-time threat intelligence and security news from multiple sources.</p>
+            </div>
+            <div class="col-auto">
+                <button id="refresh-news-btn" class="btn btn-primary">
+                    <i class="fas fa-sync-alt me-1"></i> Refresh
+                </button>
+                <button id="add-news-btn" class="btn btn-success ms-2">
+                    <i class="fas fa-plus me-1"></i> Add News
+                </button>
+            </div>
+        </div>
+        
+        <!-- News Filters -->
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <select class="form-select" id="news-risk-filter">
+                    <option value="">All Risk Levels</option>
+                    <option value="high">High Risk</option>
+                    <option value="medium">Medium Risk</option>
+                    <option value="low">Low Risk</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="news-search" placeholder="Search news...">
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="news-limit">
+                    <option value="50">50 items</option>
+                    <option value="100">100 items</option>
+                    <option value="200">200 items</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button id="news-filter-btn" class="btn btn-outline-secondary w-100">
+                    <i class="fas fa-filter me-1"></i> Apply Filters
+                </button>
+            </div>
+        </div>
+        
+        <!-- News List -->
+        <div class="card">
+            <div class="card-body">
+                <div id="news-container">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading news...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tools & Scripts View -->
+    <div id="tools-scripts-view" class="view-section">
+        <div class="row">
+            <div class="col">
+                <h2><i class="fas fa-tools me-2"></i>Tools & Scripts</h2>
+                <p>Private collection of hacking tools and scripts. Auto-download and store in database.</p>
+            </div>
+            <div class="col-auto">
+                <button id="refresh-tools-btn" class="btn btn-primary">
+                    <i class="fas fa-sync-alt me-1"></i> Refresh
+                </button>
+                <button id="add-tool-btn" class="btn btn-success ms-2">
+                    <i class="fas fa-plus me-1"></i> Add Tool
+                </button>
+                <button id="upload-tool-btn" class="btn btn-info ms-2">
+                    <i class="fas fa-upload me-1"></i> Upload File
+                </button>
+            </div>
+        </div>
+        
+        <!-- Tools Filters -->
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <select class="form-select" id="tools-risk-filter">
+                    <option value="">All Risk Levels</option>
+                    <option value="high">High Risk</option>
+                    <option value="medium">Medium Risk</option>
+                    <option value="low">Low Risk</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="tools-search" placeholder="Search tools...">
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="tools-limit">
+                    <option value="50">50 items</option>
+                    <option value="100">100 items</option>
+                    <option value="200">200 items</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button id="tools-filter-btn" class="btn btn-outline-secondary w-100">
+                    <i class="fas fa-filter me-1"></i> Apply Filters
+                </button>
+            </div>
+        </div>
+        
+        <!-- Tools Statistics -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="card bg-primary text-white">
+                    <div class="card-body text-center">
+                        <h5 id="total-tools">0</h5>
+                        <small>Total Tools</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-warning text-dark">
+                    <div class="card-body text-center">
+                        <h5 id="high-risk-tools">0</h5>
+                        <small>High Risk</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-success text-white">
+                    <div class="card-body text-center">
+                        <h5 id="downloaded-tools">0</h5>
+                        <small>Downloaded</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tools List -->
+        <div class="card">
+            <div class="card-body">
+                <div id="tools-container">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading tools...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Alert Modal -->
+    <div class="modal fade" id="add-alert-modal" tabindex="-1" aria-labelledby="add-alert-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="add-alert-modal-label">Add Keyword Alert</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-alert-form">
+                        <div class="mb-3">
+                            <label for="alert-keyword" class="form-label">Keyword</label>
+                            <input type="text" class="form-control" id="alert-keyword" placeholder="Enter keyword to monitor" required>
+                            <div class="form-text">You'll be alerted when this keyword appears in new content.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="alert-priority" class="form-label">Priority</label>
+                            <select class="form-select" id="alert-priority" required>
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                            <div class="form-text">High priority alerts will be highlighted prominently.</div>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="alert-enabled" checked>
+                            <label class="form-check-label" for="alert-enabled">Enable Alert</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="save-alert-btn">Save Alert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Alert Modal -->
+    <div class="modal fade" id="edit-alert-modal" tabindex="-1" aria-labelledby="edit-alert-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-alert-modal-label">Edit Keyword Alert</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-alert-form">
+                        <input type="hidden" id="edit-alert-id">
+                        <div class="mb-3">
+                            <label for="edit-alert-keyword" class="form-label">Keyword</label>
+                            <input type="text" class="form-control" id="edit-alert-keyword" readonly>
+                            <div class="form-text">Keywords cannot be changed. Create a new alert instead.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-alert-priority" class="form-label">Priority</label>
+                            <select class="form-select" id="edit-alert-priority" required>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="edit-alert-enabled">
+                            <label class="form-check-label" for="edit-alert-enabled">Enable Alert</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger me-auto" id="delete-alert-btn">Delete Alert</button>
+                    <button type="button" class="btn btn-primary" id="update-alert-btn">Update Alert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- app JS -->
+    <script src="app.js"></script>
+    <script src="search.js"></script>
+    <script src="settings.js"></script>
+    <script src="alerts.js"></script>
+    <script src="logs.js"></script>
+    <script src="crawler.js"></script>
+    <script src="users.js"></script>
+    <script src="cve_monitor.js"></script>
+    <script src="threat_news.js"></script>
+    <script src="tools_scripts.js"></script>
+
+    
+    
+    <script>
+        // Bot Management Functions
+        async function loadBotStatus() {
+            try {
+                const response = await fetch('/api/bots');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const bots = data.bots;
+                    
+                    // Update bot status badges
+                    document.getElementById('surface-bot-status').textContent = bots.surface?.status || 'Unknown';
+                    document.getElementById('deep-bot-status').textContent = bots.deep?.status || 'Unknown';
+                    document.getElementById('dark-bot-status').textContent = bots.dark?.status || 'Unknown';
+                    document.getElementById('osint-bot-status').textContent = bots.osint?.status || 'Unknown';
+                    
+                    // Update badge colors based on status
+                    updateBotStatusBadge('surface-bot-status', bots.surface?.status);
+                    updateBotStatusBadge('deep-bot-status', bots.deep?.status);
+                    updateBotStatusBadge('dark-bot-status', bots.dark?.status);
+                    updateBotStatusBadge('osint-bot-status', bots.osint?.status);
+                }
+            } catch (error) {
+                console.error('Error loading bot status:', error);
+            }
+        }
+        
+        function updateBotStatusBadge(elementId, status) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            // Remove existing classes
+            element.className = 'badge';
+            
+            // Add appropriate classes based on status
+            switch (status) {
+                case 'running':
+                    element.classList.add('bg-success', 'text-white');
+                    break;
+                case 'stopped':
+                    element.classList.add('bg-danger', 'text-white');
+                    break;
+                case 'paused':
+                    element.classList.add('bg-warning', 'text-dark');
+                    break;
+                case 'error':
+                    element.classList.add('bg-danger', 'text-white');
+                    break;
+                default:
+                    element.classList.add('bg-secondary', 'text-white');
+            }
+        }
+        
+        async function startBot(botType) {
+            try {
+                const response = await fetch(`/api/bots/${botType}/start`, { method: 'POST' });
+                const data = await response.json();
+                
+                if (data.success) {
+                    showToast('success', `${botType} bot started successfully`);
+                    setTimeout(loadBotStatus, 2000);
+                } else {
+                    showToast('error', `Failed to start ${botType} bot: ${data.error}`);
+                }
+            } catch (error) {
+                showToast('error', `Error starting ${botType} bot: ${error.message}`);
+            }
+        }
+        
+        async function stopBot(botType) {
+            try {
+                const response = await fetch(`/api/bots/${botType}/stop`, { method: 'POST' });
+                const data = await response.json();
+                
+                if (data.success) {
+                    showToast('success', `${botType} bot stopped successfully`);
+                    setTimeout(loadBotStatus, 2000);
+                } else {
+                    showToast('error', `Failed to stop ${botType} bot: ${data.error}`);
+                }
+            } catch (error) {
+                showToast('error', `Error stopping ${botType} bot: ${error.message}`);
+            }
+        }
+        
+async function loadDataSourcesSummary() {
+    try {
+        const response = await fetch('/api/datasources');
+        const data = await response.json();
+        
+        if (data.success) {
+            const sources = data.sources || [];
+            const container = document.getElementById('data-sources-summary');
+            
+            if (sources.length === 0) {
+                container.innerHTML = '<p class="text-muted text-center">No data sources configured</p>';
+                return;
+            }
+            
+            // Summary counts
+            const totalSources = sources.length;
+            const enabledSources = sources.filter(s => s.enabled).length;
+            const highRiskSources = sources.filter(s => s.risk_level === 'high').length;
+            // Adjust surface web count to count known surface types
+            const surfaceTypes = ['forum', 'news', 'pastebin'];
+            const surfaceSources = sources.filter(s => surfaceTypes.includes(s.source_type)).length;
+            
+            const summary = `
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h4 style="color: #1e3a8a;">${totalSources}</h4>
+                            <small style="color: #64748b;">Total Sources</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h4 style="color: #7c3aed;">${enabledSources}</h4>
+                            <small style="color: #64748b;">Enabled</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h4 style="color: #dc2626;">${highRiskSources}</h4>
+                            <small style="color: #64748b;">High Risk</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h4 style="color: #8b5cf6;">${surfaceSources}</h4>
+                            <small style="color: #64748b;">Surface Web</small>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Detailed list of sources
+            let listHtml = `
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>URL</th>
+                            <th>Type</th>
+                            <th>Risk Level</th>
+                            <th>Enabled</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            for (const src of sources) {
+                listHtml += `
+                    <tr>
+                        <td>${src.name}</td>
+                        <td><a href="${src.url}" target="_blank" rel="noopener noreferrer">${src.url}</a></td>
+                        <td>${src.source_type}</td>
+                        <td>${src.risk_level}</td>
+                        <td>${src.enabled ? 'Yes' : 'No'}</td>
+                    </tr>
+                `;
+            }
+            
+            listHtml += `
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = summary + listHtml;
+        }
+    } catch (error) {
+        console.error('Error loading data sources summary:', error);
+    }
+}
+        
+        function showToast(type, message) {
+            // Create a simple toast notification
+            const toast = document.createElement('div');
+            toast.className = `alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show position-fixed`;
+            toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            toast.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 5000);
+        }
+        
+        // Admin logout functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutBtn = document.getElementById('logout-btn');
+            
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    // Call the logout API
+                    fetch('/api/admin-logout', {
+                        method: 'POST',
+                        credentials: 'same-origin'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Redirect to login page after successful logout
+                            window.location.href = '/eng/login';
+                        } else {
+                            console.error('Logout failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Logout error:', error);
+                    });
+                });
+            }
+            
+            // Load bot status when bot management view is shown
+            document.addEventListener('click', function(e) {
+                if (e.target.getAttribute('data-view') === 'bot-management') {
+                    loadBotStatus();
+                    loadDataSourcesSummary();
+                }
+            });
+            
+            // Initial load if bot management is the active view
+            if (document.querySelector('[data-view="bot-management"].active')) {
+                loadBotStatus();
+                loadDataSourcesSummary();
+            }
+        });
+
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', () => {
+            document.querySelector('.sidebar')?.classList.toggle('active');
+            document.querySelector('.sidebar-overlay')?.classList.toggle('active');
+        });
+
+        document.querySelector('.sidebar-overlay')?.addEventListener('click', () => {
+            document.querySelector('.sidebar')?.classList.remove('active');
+            document.querySelector('.sidebar-overlay')?.classList.remove('active');
+        });
+        
+    </script>
+    <!-- Include the API Manager modal -->
+    
+
+    <style>
+        /* Basic modal styles without Bootstrap */
+        #apiManagerModal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        #apiManagerModal.show {
+            display: block;
+        }
+        #apiManagerModal .modal-dialog {
+            position: relative;
+            margin: 10% auto;
+            max-width: 900px;
+            background: #1f2a4a;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            color: #e0e0e0;
+            padding: 1rem;
+        }
+        #apiManagerModal .modal-header,
+        #apiManagerModal .modal-footer {
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #9370db;
+        }
+        #apiManagerModal .modal-header {
+            border-bottom: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #apiManagerModal .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        #apiManagerModal .btn-close {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            cursor: pointer;
+        }
+        #apiManagerModal .modal-body {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 1rem;
+            background: rgba(31, 42, 74, 0.95);
+            border-radius: 0 0 12px 12px;
+        }
+        #refresh-api-manager-btn {
+            background: linear-gradient(135deg, #9370db, #8a2be2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        #refresh-api-manager-btn:hover {
+            background: linear-gradient(135deg, #8a2be2, #9370db);
+        }
+       
+    </style>
+</body>
+</html>

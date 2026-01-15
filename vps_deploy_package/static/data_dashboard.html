@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real OSINT Data Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .alert-custom {
+            border-left: 4px solid #28a745;
+            background-color: #f8fff9;
+        }
+        .badge-custom {
+            background-color: #6c757d;
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .status-active {
+            background-color: #28a745;
+            animation: pulse 2s infinite;
+        }
+        .status-inactive {
+            background-color: #dc3545;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .content-preview {
+            max-height: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        .tor-indicator {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-shield-alt me-2"></i>
+                Privacy OSINT Data Dashboard
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-arrow-left me-1"></i> Back to Admin
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Real Data Overview -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-custom">
+                    <h5 class="alert-heading">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Your App is Collecting Real Data!
+                    </h5>
+                    <p class="mb-0">
+                        The "0 new sites" message means your crawler is working perfectly - all major privacy sites are already being monitored.
+                        Below you can see the actual data being collected from these sources.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div id="data-overview" class="row mb-4">
+            <!-- Will be populated by JavaScript -->
+        </div>
+
+        <!-- Tor Network Status -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-user-secret me-2"></i>
+                            Tor Network Status
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="tor-status" class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                            <span>Checking Tor network status...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div id="data-table-container">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="spinner-border text-primary" role="status"></div>
+                            <p class="mt-2">Loading real OSINT data...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sources Table -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div id="sources-table-container">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="spinner-border text-primary" role="status"></div>
+                            <p class="mt-2">Loading monitored sources...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Functionality -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-search me-2"></i>
+                            Search Collected Data
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" id="data-search" class="form-control" placeholder="Search posts by title, content, or source...">
+                            <button class="btn btn-outline-secondary" type="button" onclick="searchData()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <div id="search-results" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="data_viewer.js"></script>
+    <script>
+        // Enhanced initialization with Tor status check
+        document.addEventListener('DOMContentLoaded', function() {
+            initDataViewer();
+            checkTorStatus();
+            
+            // Auto-refresh every 30 seconds
+            setInterval(() => {
+                loadRealData();
+                checkTorStatus();
+            }, 30000);
+        });
+
+        async function checkTorStatus() {
+            try {
+                const response = await fetch('/api/tor/status');
+                const data = await response.json();
+                
+                const statusDiv = document.getElementById('tor-status');
+                
+                if (data.available && data.running) {
+                    statusDiv.innerHTML = `
+                        <div class="d-flex align-items-center">
+                            <div class="status-indicator status-active"></div>
+                            <span class="me-3">Tor Network Active</span>
+                            <span class="tor-indicator me-2">
+                                <i class="fas fa-user-secret"></i> Anonymous Mode
+                            </span>
+                            <span class="badge bg-success">Port ${data.port}</span>
+                        </div>
+                    `;
+                } else {
+                    statusDiv.innerHTML = `
+                        <div class="d-flex align-items-center">
+                            <div class="status-indicator status-inactive"></div>
+                            <span class="me-3">Tor Network Inactive</span>
+                            <span class="badge bg-warning">Direct Connection</span>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error checking Tor status:', error);
+                document.getElementById('tor-status').innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <div class="status-indicator status-inactive"></div>
+                        <span class="text-muted">Status Unknown</span>
+                    </div>
+                `;
+            }
+        }
+
+        // Enhanced search functionality
+        async function searchData() {
+            const searchTerm = document.getElementById('data-search').value.toLowerCase();
+            const resultsDiv = document.getElementById('search-results');
+            
+            if (!searchTerm.trim()) {
+                resultsDiv.innerHTML = '';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/search?q=${encodeURIComponent(searchTerm)}`);
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    let resultsHTML = `
+                        <div class="alert alert-info">
+                            <i class="fas fa-search me-2"></i>
+                            Found ${data.results.length} results for "${searchTerm}"
+                        </div>
+                    `;
+                    
+                    data.results.slice(0, 5).forEach(result => {
+                        resultsHTML += `
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <h6 class="card-title">${result.title || 'No title'}</h6>
+                                    <p class="card-text content-preview">${result.content || result.summary || 'No content'}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            <span class="badge bg-secondary">${result.source || 'Unknown'}</span>
+                                        </small>
+                                        <a href="${result.url}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-external-link-alt"></i> View
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    resultsDiv.innerHTML = resultsHTML;
+                } else {
+                    resultsDiv.innerHTML = `
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            No results found for "${searchTerm}"
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Search error:', error);
+                resultsDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        Error performing search
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

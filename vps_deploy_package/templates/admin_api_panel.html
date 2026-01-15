@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin API Configuration Panel</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+        .api-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .api-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .api-form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .api-form input, .api-form select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+        .api-form button {
+            grid-column: span 2;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .api-form button:hover {
+            background-color: #0056b3;
+        }
+        .api-list {
+            margin-top: 20px;
+        }
+        .api-item {
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+        }
+        .api-item h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .api-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .api-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .api-actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+        .btn-toggle {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-toggle:hover {
+            background-color: #218838;
+        }
+        .btn-disable {
+            background-color: #ffc107;
+            color: black;
+        }
+        .btn-disable:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>API Configuration Panel</h1>
+    </div>
+    <div class="sidebar">
+        <h2>Admin Menu</h2>
+        <ul>
+            <li><a href="/admin">Dashboard</a></li>
+            <li><a href="/admin/configure-apis" class="active">Configure APIs</a></li>
+            <li><a href="/admin/users">Manage Users</a></li>
+            <li><a href="/admin/security/logs">Security Logs</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>Manage API Keys</h2>
+        
+        <!-- API Integration Section -->
+        <div class="api-section">
+            <h3>Integrate New API</h3>
+            <form id="api-integration-form" class="api-form">
+                <div>
+                    <label for="service">API Service Name:</label>
+                    <input type="text" id="service" name="service" required placeholder="e.g., HaveIBeenPwned">
+                </div>
+                <div>
+                    <label for="api-key">API Key:</label>
+                    <input type="text" id="api-key" name="key" required placeholder="Your API key">
+                </div>
+                <div>
+                    <label for="api-type">API Type:</label>
+                    <select id="api-type" name="api_type" required>
+                        <option value="">Select API Type</option>
+                        <option value="breach">Breach Data</option>
+                        <option value="leak">Leak Data</option>
+                        <option value="cve">CVE Data</option>
+                        <option value="news">News Feed</option>
+                        <option value="tool">Security Tools</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="endpoint-url">Endpoint URL:</label>
+                    <input type="url" id="endpoint-url" name="endpoint_url" required placeholder="https://api.example.com/v1/endpoint">
+                </div>
+                <div>
+                    <label for="refresh-interval">Refresh Interval (minutes):</label>
+                    <input type="number" id="refresh-interval" name="refresh_interval" value="60" min="15">
+                </div>
+                <div>
+                    <label for="priority">Priority:</label>
+                    <select id="priority" name="priority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="enabled">Enabled:</label>
+                    <select id="enabled" name="enabled">
+                        <option value="true" selected>Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <button type="submit">Integrate API</button>
+            </form>
+        </div>
+
+        <!-- Integrated APIs List -->
+        <div class="api-section">
+            <h3>Integrated APIs</h3>
+            <div id="integrated-apis-list" class="api-list">
+                <p>Loading integrated APIs...</p>
+            </div>
+        </div>
+
+        <!-- Basic API Key Management -->
+        <div class="api-section">
+            <h3>API Key Management</h3>
+            <form id="api-config-form">
+                <label for="basic-service">Service Name:</label>
+                <input type="text" id="basic-service" name="service" required>
+                <label for="basic-api-key">API Key:</label>
+                <input type="text" id="basic-api-key" name="api-key" required>
+                <button type="submit">Add API Key</button>
+            </form>
+            <div id="api-keys-list">
+                <h4>Existing API Keys</h4>
+                <ul id="api-keys"></ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        // API Integration Form
+        document.getElementById('api-integration-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Convert refresh_interval to number and enabled to boolean
+            data.refresh_interval = parseInt(data.refresh_interval);
+            data.enabled = data.enabled === 'true';
+            
+            try {
+                const response = await fetch('/api/config/integrate_api', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert(`API integrated successfully: ${result.message}`);
+                    this.reset();
+                    loadIntegratedAPIs();
+                } else {
+                    alert(`Error: ${result.error}`);
+                }
+            } catch (error) {
+                alert('Error integrating API: ' + error.message);
+            }
+        });
+
+        // Basic API Key Form
+        document.getElementById('api-config-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const service = document.getElementById('basic-service').value;
+            const apiKey = document.getElementById('basic-api-key').value;
+
+            // Add API key logic here (e.g., send to backend)
+            console.log(`Adding API Key for ${service}: ${apiKey}`);
+        });
+
+        // Load integrated APIs
+        async function loadIntegratedAPIs() {
+            try {
+                const response = await fetch('/api/config/integrated_apis');
+                const result = await response.json();
+                
+                const apisList = document.getElementById('integrated-apis-list');
+                
+                if (result.success && Object.keys(result.integrated_apis).length > 0) {
+                    let html = '';
+                    for (const [service, config] of Object.entries(result.integrated_apis)) {
+                        html += `
+                            <div class="api-item">
+                                <h4>${service}</h4>
+                                <p><strong>Type:</strong> ${config.api_type}</p>
+                                <p><strong>Endpoint:</strong> ${config.endpoint_url}</p>
+                                <p><strong>Status:</strong> ${config.enabled ? 'Enabled' : 'Disabled'}</p>
+                                <p><strong>Refresh:</strong> Every ${config.refresh_interval} minutes</p>
+                                <p><strong>Priority:</strong> ${config.priority}</p>
+                                <div class="api-actions">
+                                    <button class="btn-toggle" onclick="toggleAPI('${service}', ${!config.enabled})">
+                                        ${config.enabled ? 'Disable' : 'Enable'}
+                                    </button>
+                                    <button class="btn-delete" onclick="removeAPI('${service}')">Remove</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    apisList.innerHTML = html;
+                } else {
+                    apisList.innerHTML = '<p>No APIs integrated yet.</p>';
+                }
+            } catch (error) {
+                document.getElementById('integrated-apis-list').innerHTML = '<p>Error loading integrated APIs.</p>';
+                console.error('Error loading integrated APIs:', error);
+            }
+        }
+
+        // Remove API
+        async function removeAPI(service) {
+            if (confirm(`Are you sure you want to remove the ${service} API?`)) {
+                try {
+                    const response = await fetch(`/api/config/integrate_api/${service}`, {
+                        method: 'DELETE'
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        alert(result.message);
+                        loadIntegratedAPIs();
+                    } else {
+                        alert(`Error: ${result.error}`);
+                    }
+                } catch (error) {
+                    alert('Error removing API: ' + error.message);
+                }
+            }
+        }
+
+        // Toggle API status
+        async function toggleAPI(service, enable) {
+            try {
+                // First get current config
+                const response = await fetch('/api/config/integrated_apis');
+                const result = await response.json();
+                
+                if (result.success && result.integrated_apis[service]) {
+                    const config = result.integrated_apis[service];
+                    config.enabled = enable;
+                    
+                    // Update the API
+                    const updateResponse = await fetch('/api/config/integrate_api', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(config)
+                    });
+                    
+                    const updateResult = await updateResponse.json();
+                    
+                    if (updateResult.success) {
+                        alert(`API ${enable ? 'enabled' : 'disabled'} successfully`);
+                        loadIntegratedAPIs();
+                    } else {
+                        alert(`Error: ${updateResult.error}`);
+                    }
+                }
+            } catch (error) {
+                alert('Error toggling API: ' + error.message);
+            }
+        }
+
+        // Fetch existing API keys and display them
+        async function fetchApiKeys() {
+            const response = await fetch('/api/config/api_keys');
+            const apiKeys = await response.json();
+            const apiKeysList = document.getElementById('api-keys');
+            apiKeysList.innerHTML = '';
+            apiKeys.forEach(api => {
+                const li = document.createElement('li');
+                li.textContent = `${api.service}: ${api.key_preview}`;
+                apiKeysList.appendChild(li);
+            });
+        }
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadIntegratedAPIs();
+            fetchApiKeys();
+        });
+    </script>
+</body>
+</html>
