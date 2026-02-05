@@ -78,9 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
         loadPosts();
         loadSourcesForFilter();
         initKeywords();
-        initSearchTools();
+        if (typeof initSearchTools === 'function') {
+            initSearchTools();
+        }
         initDownloadsSystem();
         initTorControls();
+
+        // Initialize file upload system
+        initFileUploadSystem();
         
         // Initialize crawler if the function exists
         if (typeof initCrawler === 'function') {

@@ -125,10 +125,27 @@ class BotManager:
         try:
             q = DataSource.query
             if source_type:
-                q = q.filter_by(source_type=source_type)
+                # Allow passing a list/tuple of types or legacy names like 'osint_feed'
+                if isinstance(source_type, (list, tuple, set)):
+                    q = q.filter(DataSource.source_type.in_(list(source_type)))
+                else:
+                    st = source_type
+                    # Map legacy/alternate names to actual values stored in DB
+                    if st in ('osint_feed', 'osint'):
+                        # accept either 'osint' or 'osint_feed' values in the DB
+                        q = q.filter(DataSource.source_type.in_(['osint', 'osint_feed']))
+                    elif st == 'all':
+                        # no filter
+                        pass
+                    else:
+                        q = q.filter_by(source_type=st)
             return q.order_by(DataSource.created_at.desc()).all()
         except Exception as e:
-            # Return empty list if database access fails
+            # Log error and return empty list if database access fails
+            try:
+                self.logger.error(f"Error listing sources ({source_type}): {e}")
+            except Exception:
+                pass
             return []
 
     def get_dashboard_stats(self) -> Dict[str, Any]:
@@ -390,7 +407,8 @@ class BotManager:
                 return False
 
             # Filter sources by feed type
-            sources = self.list_sources('osint_feed')
+            # support both 'osint' and legacy 'osint_feed' source_type values
+            sources = self.list_sources(['osint', 'osint_feed'])
             if not sources:
                 self.logger.warning("No OSINT feed sources found")
                 return False

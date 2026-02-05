@@ -2630,7 +2630,12 @@ def admin_bots():
     """Serve admin panel with bots control."""
     if not session.get('admin_logged_in'):
         return redirect('/eng/login')
-    return send_from_directory('templates', 'admin_bots.html')
+    try:
+        from flask import render_template
+        return render_template('admin_bots.html')
+    except Exception:
+        # Fallback: return the raw file if rendering fails for some reason
+        return send_from_directory('templates', 'admin_bots.html')
 
 
 @app.route('/api/admin/init-db', methods=['POST'])
@@ -2678,8 +2683,14 @@ def get_data_stats():
         from datetime import datetime, timedelta
         
         # Get counts
-        total_entities = Entity.query.count()
-        total_relationships = Relationship.query.count()
+        try:
+            total_entities = Entity.query.count()
+            total_relationships = Relationship.query.count()
+        except Exception as e:
+            logger.warning(f"Could not fetch Entity/Relationship counts: {e}")
+            total_entities = 0
+            total_relationships = 0
+        
         total_raw_data = RawData.query.count()
         
         # Get last 24 hours data
@@ -2696,6 +2707,7 @@ def get_data_stats():
             }
         })
     except Exception as e:
+        logger.error(f"Error getting data stats: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/data/raw', methods=['GET'])

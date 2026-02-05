@@ -855,7 +855,7 @@
                     </div>
                 </div>
             `;
-            document.getElementById('total-data').textContent = (stats.total_entities || 0) + (stats.total_relationships || 0);
+            document.getElementById('total-data').textContent = (stats.total_raw_data || 0);
         }
 
         function showAlert(type, message) {

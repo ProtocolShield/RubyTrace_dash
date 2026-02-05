@@ -1,0 +1,57 @@
+:root{
+    --admin-accent: #6fb4ff;
+    --admin-panel: rgba(255,255,255,0.03);
+    --sidebar-width: 260px;
+}
+
+/* Mobile sidebar overlay */
+.mobile-sidebar-overlay{display:none}
+
+/* Sidebar open state for mobile */
+@media (max-width: 900px){
+    .sidebar{position:fixed;left:-100%;top:0;height:100%;width:var(--sidebar-width);z-index:999;background:linear-gradient(180deg, rgba(10,20,35,0.95), rgba(6,10,18,0.95));transition:all .25s ease;transform:translateX(-8px)}
+    .sidebar.open{left:0; transform:none; z-index:1005}
+    body.sidebar-open{overflow:hidden}
+    .mobile-sidebar-overlay{display:block;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1004}
+}
+
+/* Header + controls layout helpers */
+.card-header-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.controls-row{display:flex;align-items:center;gap:8px}
+
+/* Stack header controls on small screens */
+@media (max-width:900px){
+    .card-header-row{flex-direction:column;align-items:flex-start}
+    .controls-row{width:100%;flex-wrap:wrap}
+    .controls-row .btn{flex:0 0 auto}
+}
+
+/* Ensure threat news / CVE monitor span full width on small screens */
+@media (max-width:900px){
+    .threat-news-container, .cve-monitor, .intelligence-feed{width:100%;}
+}
+
+/* Small polish for buttons in headers */
+.card-header-row .btn, .card-header-row .btn-primary{height:36px}
+
+/* Reduce z-index collision for modals/overlays */
+.mobile-sidebar-overlay, .sidebar.open{z-index:999}
+
+/* Ensure the mobile menu button is visible in the top bar on small screens */
+@media (max-width: 900px){
+    .mobile-sidebar-toggle{ display: block !important; position: relative; z-index: 1001; background: none; border: none; color: #fff; font-size: 1.25rem; padding: 0.45rem; margin-right: 8px; }
+
+    /* Higher-specificity overrides to beat other global styles that hide the toggle */
+    .top-bar .mobile-sidebar-toggle, .navbar .mobile-sidebar-toggle, header .mobile-sidebar-toggle { display: inline-flex !important; align-items: center; justify-content: center; color: var(--admin-accent); background: transparent; border: none; padding: 6px; cursor: pointer; }
+    .top-bar .mobile-sidebar-toggle i, .navbar .mobile-sidebar-toggle i { font-size: 18px; }
+    .mobile-sidebar-toggle[aria-hidden="true"] { display: none !important; }
+
+    /* Ensure it's visible above other elements */
+    .top-bar { z-index: 1002 }
+    .mobile-sidebar-toggle { pointer-events: auto }
+}
+
+/* Additional small-screen polish */
+@media (max-width: 480px) {
+    .mobile-sidebar-toggle { font-size: 1.05rem; padding: 0.4rem; }
+}

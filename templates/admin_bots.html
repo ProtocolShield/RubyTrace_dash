@@ -268,7 +268,32 @@
          .modal .tab-pane {
              color: #e0e0e0;
          }
+
+         /* Mobile Sidebar Toggle */
+         .mobile-sidebar-toggle {
+            display: none;
+         }
+
+         @media (max-width: 991.98px) {
+            /* Show the mobile toggle on small screens and ensure it appears above content */
+            .mobile-sidebar-toggle {
+                display: block !important;
+                position: fixed; /* fixed so it remains visible even inside nested navs */
+                top: 12px;
+                left: 12px;
+                z-index: 1100; /* above navbar and overlays */
+                background: transparent;
+                border: none;
+                padding: 6px;
+                color: #ffffff;
+            }
+
+             .navbar-brand {
+                 margin-left: 60px;
+             }
+         }
     </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_responsive.css') }}">
 </head>
 <body>
     <div class="container-fluid">
@@ -276,6 +301,10 @@
             <div class="col-12">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div class="container-fluid">
+                        <!-- Mobile sidebar toggle (visible on small screens) -->
+                        <button class="mobile-sidebar-toggle d-lg-none btn btn-link text-white" id="mobile-sidebar-toggle" aria-label="Open navigation menu" aria-controls="sidebar" aria-expanded="false">
+                            <i class="fas fa-bars"></i>
+                        </button>
                         <a class="navbar-brand" href="/admin">
                             <i class="fas fa-robot"></i> OSINT Bot Management
                         </a>
@@ -573,7 +602,9 @@
         </div>
     </div>
 
+    <!-- scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='admin_responsive.js') }}"></script>
     <script>
         // Global variables
         let botData = {};
@@ -910,8 +941,16 @@
                     <div class="col-md-3">
                         <div class="card text-center">
                             <div class="card-body">
+                                <h3>${stats.total_raw_data || 0}</h3>
+                                <p class="text-muted">Raw Data Items</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center">
+                            <div class="card-body">
                                 <h3>${stats.total_entities || 0}</h3>
-                                <p class="text-muted">Total Entities</p>
+                                <p class="text-muted">Entities</p>
                             </div>
                         </div>
                     </div>
@@ -926,14 +965,6 @@
                     <div class="col-md-3">
                         <div class="card text-center">
                             <div class="card-body">
-                                <h3>${stats.total_raw_data || 0}</h3>
-                                <p class="text-muted">Raw Data Items</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-center">
-                            <div class="card-body">
                                 <h3>${stats.last_24h || 0}</h3>
                                 <p class="text-muted">Last 24 Hours</p>
                             </div>
@@ -941,7 +972,7 @@
                     </div>
                 </div>
             `;
-            document.getElementById('total-data').textContent = (stats.total_entities || 0) + (stats.total_relationships || 0);
+            document.getElementById('total-data').textContent = (stats.total_raw_data || 0);
         }
 
         function showAlert(type, message) {
@@ -961,347 +992,215 @@
             }, 5000);
         }
 
-        // Event listeners
-        document.getElementById('log-filter').addEventListener('change', function() {
-            updateLogsDisplay(this.value);
-        });
-
-        // Raw Data Management
-        let currentPage = 1;
-        let currentData = [];
-        let currentPagination = {};
+        // Raw Data Display Functions
+        let rawDataCache = [];
+        let currentRawDataPage = 1;
 
         async function loadRawData() {
             try {
-                const filter = document.getElementById('data-filter').value;
-                const perPage = document.getElementById('data-per-page').value;
+                const sourceType = document.getElementById('data-filter').value;
+                const perPage = parseInt(document.getElementById('data-per-page').value) || 20;
                 
-                const url = `/api/data/raw?page=${currentPage}&per_page=${perPage}${filter !== 'all' ? `&source_type=${filter}` : ''}`;
+                let url = `/api/data/raw?page=${currentRawDataPage}&per_page=${perPage}`;
+                if (sourceType && sourceType !== 'all') {
+                    url += `&source_type=${sourceType}`;
+                }
+                
                 const response = await fetch(url);
                 const data = await response.json();
                 
                 if (data.success) {
-                    currentData = data.data;
-                    currentPagination = data.pagination;
-                    displayRawData();
-                    updateDataPagination();
+                    rawDataCache = data.data || [];
+                    displayRawData(rawDataCache);
+                    updateDataPagination(data.pagination);
                 } else {
                     showAlert('danger', 'Failed to load raw data');
                 }
             } catch (error) {
                 console.error('Error loading raw data:', error);
-                showAlert('danger', 'Error loading raw data');
+                showAlert('danger', `Error loading raw data: ${error.message}`);
             }
         }
 
-        function displayRawData() {
+        function displayRawData(data) {
             const container = document.getElementById('raw-data-container');
             
-            if (currentData.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-4">
-                        <i class="fas fa-database fa-3x text-muted mb-3"></i>
-                        <p class="text-muted">No data collected yet. Start the bots to begin data collection.</p>
-                    </div>
-                `;
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="text-center text-muted py-4"><i class="fas fa-inbox fa-3x mb-3"></i><p>No data collected yet</p></div>';
                 return;
             }
 
-            container.innerHTML = currentData.map(item => `
-                <div class="card mb-3 data-item">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="mb-0">
-                                <i class="fas fa-file-alt me-2"></i>
-                                ${item.title || 'Untitled'}
-                            </h6>
-                            <small class="text-muted">
-                                Source: ${item.source_name} (${item.source_type}) | 
-                                Bot: ${item.bot_type} | 
-                                Risk: <span class="badge bg-${getRiskColor(item.risk_score)}">${item.risk_score || 0}</span>
-                            </small>
-                        </div>
-                        <div>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewDataDetail(${item.id})">
-                                <i class="fas fa-eye"></i> View Full
-                            </button>
+            container.innerHTML = data.map(item => `
+                <div class="card mb-3 bg-dark border-secondary">
+                    <div class="card-header bg-dark border-secondary">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h6 class="mb-1">${escapeHtml(item.title || 'No Title')}</h6>
+                                <small class="text-muted">
+                                    <i class="fas fa-link"></i> ${escapeHtml(item.source_name || 'Unknown')} • 
+                                    <i class="fas fa-calendar"></i> ${new Date(item.created_at).toLocaleString() || 'N/A'}
+                                </small>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <span class="badge bg-${getRiskColor(getRiskLevel(item.risk_score))}">${item.risk_score ? item.risk_score.toFixed(1) : '0'}</span>
+                                <span class="badge bg-info">${item.source_type || 'Unknown'}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <p class="text-muted mb-2">
-                                    <i class="fas fa-link me-1"></i>
-                                    <a href="${item.url}" target="_blank" class="text-decoration-none">${item.url}</a>
-                                </p>
-                                                                 <div class="content-preview" style="line-height: 1.5; word-wrap: break-word;">
-                                     ${item.content_preview ? item.content_preview.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim() : 'No preview available'}
-                                 </div>
-                                <div class="mt-2">
-                                    <small class="text-muted">
-                                        <i class="fas fa-text-width me-1"></i> ${item.content_length} characters | 
-                                        <i class="fas fa-calendar me-1"></i> ${new Date(item.created_at).toLocaleString()}
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-2">
-                                    <strong>Keywords:</strong>
-                                    <div class="keywords-tags">
-                                        ${item.keywords ? item.keywords.split(',').map(k => `<span class="badge bg-secondary me-1">${k.trim()}</span>`).join('') : 'None'}
-                                    </div>
-                                </div>
-                                <div class="mb-2">
-                                    <strong>Tags:</strong>
-                                    <div class="tags-tags">
-                                        ${item.tags ? item.tags.split(',').map(t => `<span class="badge bg-info me-1">${t.trim()}</span>`).join('') : 'None'}
-                                    </div>
-                                </div>
-                            </div>
+                        <p class="text-light mb-2">${escapeHtml(item.content_preview || item.content || 'No content available').substring(0, 500)}${item.content && item.content.length > 500 ? '...' : ''}</p>
+                        <div class="mt-3">
+                            <small class="text-muted d-block mb-2">
+                                <strong>Keywords:</strong> ${item.keywords || 'N/A'}<br>
+                                <strong>Content Length:</strong> ${item.content_length || 0} chars
+                            </small>
                         </div>
+                    </div>
+                    <div class="card-footer bg-dark border-secondary">
+                        <button class="btn btn-sm btn-outline-primary" onclick="viewRawDataDetail(${item.id})">
+                            <i class="fas fa-expand"></i> View Full
+                        </button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function updateDataPagination() {
+        function updateDataPagination(pagination) {
             const container = document.getElementById('data-pagination');
-            const { page, pages, has_next, has_prev, total } = currentPagination;
             
-            container.innerHTML = `
-                <div>
-                    <small class="text-muted">
-                        Showing ${((page - 1) * 20) + 1} to ${Math.min(page * 20, total)} of ${total} items
-                    </small>
-                </div>
-                <div>
-                    <button class="btn btn-sm btn-outline-secondary me-2" onclick="changeDataPage(${page - 1})" ${!has_prev ? 'disabled' : ''}>
-                        <i class="fas fa-chevron-left"></i> Previous
-                    </button>
-                    <span class="mx-2">Page ${page} of ${pages}</span>
-                    <button class="btn btn-sm btn-outline-secondary ms-2" onclick="changeDataPage(${page + 1})" ${!has_next ? 'disabled' : ''}>
-                        Next <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            `;
+            if (!pagination) {
+                container.innerHTML = '';
+                return;
+            }
+
+            const pages = [];
+            if (pagination.has_prev) {
+                pages.push(`<button class="btn btn-sm btn-outline-secondary" onclick="loadRawDataPage(${pagination.page - 1})">← Previous</button>`);
+            }
+            
+            pages.push(`<span class="text-muted">Page ${pagination.page} of ${pagination.pages}</span>`);
+            
+            if (pagination.has_next) {
+                pages.push(`<button class="btn btn-sm btn-outline-secondary" onclick="loadRawDataPage(${pagination.page + 1})">Next →</button>`);
+            }
+            
+            container.innerHTML = pages.join(' ');
         }
 
-        function changeDataPage(newPage) {
-            if (newPage >= 1 && newPage <= currentPagination.pages) {
-                currentPage = newPage;
-                loadRawData();
-            }
+        function loadRawDataPage(page) {
+            currentRawDataPage = page;
+            loadRawData();
         }
 
         async function searchData() {
-            const query = document.getElementById('data-search').value.trim();
-            if (!query) {
-                loadRawData();
+            const searchTerm = document.getElementById('data-search').value;
+            if (!searchTerm.trim()) {
+                showAlert('warning', 'Please enter a search term');
                 return;
             }
 
             try {
-                const response = await fetch(`/api/data/search?q=${encodeURIComponent(query)}`);
+                const response = await fetch(`/api/data/search?q=${encodeURIComponent(searchTerm)}&page=1&per_page=20`);
                 const data = await response.json();
                 
                 if (data.success) {
-                    currentData = data.data;
-                    currentPagination = data.pagination;
-                    displayRawData();
-                    updateDataPagination();
+                    rawDataCache = data.data || [];
+                    displayRawData(rawDataCache);
+                    showAlert('success', `Found ${rawDataCache.length} results`);
                 } else {
                     showAlert('danger', 'Search failed');
                 }
             } catch (error) {
                 console.error('Error searching data:', error);
-                showAlert('danger', 'Search error');
+                showAlert('danger', `Error: ${error.message}`);
             }
         }
 
-        async function viewDataDetail(dataId) {
+        async function viewRawDataDetail(dataId) {
             try {
                 const response = await fetch(`/api/data/raw/${dataId}`);
                 const data = await response.json();
                 
                 if (data.success) {
-                    showDataDetailModal(data.data);
+                    const item = data.data;
+                    const content = item.content || 'No content available';
+                    const detailModal = new bootstrap.Modal(document.getElementById('dataDetailModal') || createDetailModal());
+                    
+                    const modalBody = document.querySelector('#dataDetailModal .modal-body');
+                    if (modalBody) {
+                        modalBody.innerHTML = `
+                            <h5>${escapeHtml(item.title || 'No Title')}</h5>
+                            <div class="mb-3">
+                                <strong>Source:</strong> ${item.source_name}<br>
+                                <strong>URL:</strong> <a href="${item.url}" target="_blank">${escapeHtml(item.url)}</a><br>
+                                <strong>Risk Score:</strong> ${item.risk_score || 0}<br>
+                                <strong>Collected:</strong> ${new Date(item.created_at).toLocaleString()}
+                            </div>
+                            <div class="alert alert-secondary">
+                                <strong>Full Content:</strong>
+                                <p style="max-height: 400px; overflow-y: auto;">${escapeHtml(content)}</p>
+                            </div>
+                        `;
+                    }
+                    detailModal.show();
                 } else {
-                    showAlert('danger', 'Failed to load data details');
+                    showAlert('danger', 'Failed to load data detail');
                 }
             } catch (error) {
                 console.error('Error loading data detail:', error);
-                showAlert('danger', 'Error loading data details');
+                showAlert('danger', `Error: ${error.message}`);
             }
         }
 
-        function showDataDetailModal(data) {
-            const modal = document.createElement('div');
-            modal.className = 'modal fade';
-            modal.id = 'dataDetailModal';
-            modal.innerHTML = `
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">
-                                <i class="fas fa-file-alt me-2"></i>
-                                ${data.title || 'Untitled'}
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <strong>Source:</strong> ${data.source_name} (${data.source_type})<br>
-                                    <strong>Bot Type:</strong> ${data.bot_type}<br>
-                                    <strong>Risk Score:</strong> <span class="badge bg-${getRiskColor(data.risk_score)}">${data.risk_score || 0}</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <strong>URL:</strong> <a href="${data.url}" target="_blank">${data.url}</a><br>
-                                    <strong>Collected:</strong> ${new Date(data.created_at).toLocaleString()}<br>
-                                    <strong>Content Length:</strong> ${data.content ? data.content.length : 0} characters
-                                </div>
+        function createDetailModal() {
+            const modalHtml = `
+                <div class="modal fade" id="dataDetailModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content bg-dark border-secondary">
+                            <div class="modal-header bg-dark border-secondary">
+                                <h5 class="modal-title">Data Detail</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                             </div>
-                            
-                            <ul class="nav nav-tabs" id="dataDetailTabs" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="content-tab" data-bs-toggle="tab" data-bs-target="#content" type="button" role="tab">
-                                        <i class="fas fa-file-text me-1"></i> Full Content
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="metadata-tab" data-bs-toggle="tab" data-bs-target="#metadata" type="button" role="tab">
-                                        <i class="fas fa-info-circle me-1"></i> Metadata
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="html-tab" data-bs-toggle="tab" data-bs-target="#html" type="button" role="tab">
-                                        <i class="fas fa-code me-1"></i> Raw HTML
-                                    </button>
-                                </li>
-                            </ul>
-                            
-                            <div class="tab-content mt-3" id="dataDetailTabContent">
-                                                                 <div class="tab-pane fade show active" id="content" role="tabpanel">
-                                     <div class="content-display" style="max-height: 400px; overflow-y: auto; background: rgba(31, 42, 74, 0.8); padding: 15px; border-radius: 5px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #e0e0e0; border: 1px solid #9370db; line-height: 1.6; word-wrap: break-word;">
-                                         ${data.content ? formatContent(data.content) : 'No content available'}
-                                     </div>
-                                 </div>
-                                 <div class="tab-pane fade" id="metadata" role="tabpanel">
-                                     <div class="metadata-display">
-                                         <h6 style="color: #ffffff;">Keywords:</h6>
-                                         <div class="mb-3">
-                                             ${data.keywords ? data.keywords.split(',').map(k => `<span class="badge bg-secondary me-1">${k.trim()}</span>`).join('') : '<span style="color: #b19cd9;">None</span>'}
-                                         </div>
-                                         <h6 style="color: #ffffff;">Tags:</h6>
-                                         <div class="mb-3">
-                                             ${data.tags ? data.tags.split(',').map(t => `<span class="badge bg-info me-1">${t.trim()}</span>`).join('') : '<span style="color: #b19cd9;">None</span>'}
-                                         </div>
-                                         <h6 style="color: #ffffff;">Risk Keywords:</h6>
-                                         <div class="mb-3">
-                                             ${data.risk_keywords ? data.risk_keywords.split(',').map(k => `<span class="badge bg-danger me-1">${k.trim()}</span>`).join('') : '<span style="color: #b19cd9;">None</span>'}
-                                         </div>
-                                         <h6 style="color: #ffffff;">File Information:</h6>
-                                         <div class="mb-3" style="color: #e0e0e0;">
-                                             <strong>File Path:</strong> ${data.file_path || 'None'}<br>
-                                             <strong>File Hash:</strong> ${data.file_hash || 'None'}
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="tab-pane fade" id="html" role="tabpanel">
-                                     <div class="html-display" style="max-height: 400px; overflow-y: auto; background: rgba(31, 42, 74, 0.8); padding: 15px; border-radius: 5px; font-family: monospace; font-size: 12px; color: #e0e0e0; border: 1px solid #9370db;">
-                                         <pre style="color: #e0e0e0; margin: 0;">${data.raw_html || 'No HTML available'}</pre>
-                                     </div>
-                                 </div>
+                            <div class="modal-body">
+                                <!-- Content will be populated here -->
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <a href="${data.url}" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt me-1"></i> Visit Source
-                            </a>
                         </div>
                     </div>
                 </div>
             `;
-            
+            const modal = document.createElement('div');
+            modal.innerHTML = modalHtml;
             document.body.appendChild(modal);
-            const modalInstance = new bootstrap.Modal(modal);
-            modalInstance.show();
-            
-            modal.addEventListener('hidden.bs.modal', function() {
-                modal.remove();
-            });
+            return document.getElementById('dataDetailModal');
         }
 
-                 function getRiskColor(riskScore) {
-             if (!riskScore) return 'secondary';
-             if (riskScore >= 0.7) return 'danger';
-             if (riskScore >= 0.4) return 'warning';
-             return 'success';
-         }
-         
-         function formatContent(content) {
-             if (!content) return 'No content available';
-             
-             // Remove excessive whitespace and normalize line breaks
-             let formatted = content
-                 .replace(/\r\n/g, '\n')  // Normalize line endings
-                 .replace(/\r/g, '\n')    // Handle old Mac line endings
-                 .replace(/\n\s*\n\s*\n/g, '\n\n')  // Remove excessive blank lines
-                 .replace(/\s{2,}/g, ' ')  // Replace multiple spaces with single space
-                 .trim();  // Remove leading/trailing whitespace
-             
-             // Split into paragraphs and format
-             const paragraphs = formatted.split('\n\n');
-             
-             return paragraphs.map(paragraph => {
-                 if (paragraph.trim() === '') return '';
-                 
-                 // Clean up the paragraph
-                 let cleanParagraph = paragraph
-                     .replace(/\n/g, ' ')  // Replace single line breaks with spaces
-                     .replace(/\s{2,}/g, ' ')  // Replace multiple spaces with single space
-                     .trim();
-                 
-                 // Skip very short paragraphs that are likely navigation elements
-                 if (cleanParagraph.length < 10 && /^[|•\-–—]/.test(cleanParagraph)) {
-                     return '';
-                 }
-                 
-                 return cleanParagraph;
-             })
-             .filter(p => p.length > 0)  // Remove empty paragraphs
-             .map(p => `<p style="margin-bottom: 1rem;">${p}</p>`)  // Wrap in paragraph tags
-             .join('');
-         }
+        function getRiskLevel(riskScore) {
+            if (!riskScore) return 'low';
+            if (riskScore >= 8) return 'critical';
+            if (riskScore >= 6) return 'high';
+            if (riskScore >= 4) return 'medium';
+            return 'low';
+        }
 
-        // Event listeners for data management
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Event listeners
+        document.getElementById('log-filter').addEventListener('change', function() {
+            updateLogsDisplay(this.value);
+        });
+
         document.getElementById('data-filter').addEventListener('change', function() {
-            currentPage = 1;
+            currentRawDataPage = 1;
             loadRawData();
         });
 
         document.getElementById('data-per-page').addEventListener('change', function() {
-            currentPage = 1;
+            currentRawDataPage = 1;
             loadRawData();
-        });
-
-        document.getElementById('data-search').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchData();
-            }
-        });
-
-        // Initialize data loading when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            loadRawData();
-        });
-
-        // Load data when the data tab is shown
-        document.addEventListener('shown.bs.tab', function(e) {
-            if (e.target.id === 'data-tab') {
-                loadRawData();
-            }
         });
     </script>
 </body>

@@ -15851,5 +15851,2074 @@
       "subjectivity": 0.0,
       "assessment": "neutral"
     }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T05:15:46 1769058946",
+    "url": "https://news.ycombinator.com/item?id=46715600",
+    "title": "Doctors in Brazil using tilapia fish skin to treat burn victims",
+    "summary": "",
+    "keywords": [
+      "tilapia fish skin",
+      "burn victims"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T00:12:00 1769040720",
+    "url": "https://news.ycombinator.com/item?id=46713526",
+    "title": "Threat actors expand abuse of Microsoft Visual Studio Code",
+    "summary": "",
+    "keywords": [
+      "threat actors",
+      "microsoft visual studio code"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T18:36:39 1769106999",
+    "url": "https://news.ycombinator.com/item?id=46723359",
+    "title": "Global biodiversity loss, ecosystem collapse and national security [pdf]",
+    "summary": "",
+    "keywords": [
+      "security",
+      "global biodiversity loss",
+      "ecosystem collapse",
+      "national security [ pdf ]"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T18:30:24 1769106624",
+    "url": "https://news.ycombinator.com/item?id=46723258",
+    "title": "Show HN: Meter – data feed monitoring changes on any site",
+    "summary": "Officially launching meter today - it tracks the changes on any website and sends you a webhook with the changes.Supports proxies, antibot handling, and schedule management.We’ve had a large amount of...",
+    "keywords": [
+      "data",
+      "show hn",
+      "meter – data feed",
+      "changes.supports proxies",
+      "schedule management.we ’ ve"
+    ],
+    "sentiment": {
+      "polarity": 0.21428571428571427,
+      "subjectivity": 0.42857142857142855,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T18:30:21 1769106621",
+    "url": "https://news.ycombinator.com/item?id=46723256",
+    "title": "Scaling of 2-D Semiconductor Nanoribbons for High-Performance Electronics",
+    "summary": "",
+    "keywords": [
+      "2-d semiconductor nanoribbons",
+      "high-performance electronics"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T18:27:19 1769106439",
+    "url": "https://news.ycombinator.com/item?id=46723216",
+    "title": "Show HN: An AI-powered web video editor built with Next.js and Fabric.js",
+    "summary": "Key Features:\n- *AI-Powered*: Uses Gemini Pro for intelligent chat and content manipulation.\n- *Tech Stack*: Built with Next.js 15, Fabric.js for canvas operations, and Tailwind CSS 4.\n- *Responsive*:...",
+    "keywords": [
+      "show hn",
+      "web video editor",
+      "fabric.js key",
+      "uses gemini",
+      "content manipulation"
+    ],
+    "sentiment": {
+      "polarity": 0.4,
+      "subjectivity": 0.95,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T18:25:08 1769106308",
+    "url": "https://news.ycombinator.com/item?id=46723177",
+    "title": "Inferact: A New Company from the Creators of vLLM ($150M Seed)",
+    "summary": "",
+    "keywords": [
+      "new company",
+      "$ 150m seed"
+    ],
+    "sentiment": {
+      "polarity": 0.13636363636363635,
+      "subjectivity": 0.45454545454545453,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T18:17:03 1769105823",
+    "url": "https://news.ycombinator.com/item?id=46723068",
+    "title": "Y Combinator No Longer Investing in Canadian Companies",
+    "summary": "",
+    "keywords": [
+      "y combinator",
+      "canadian companies"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T18:14:37 1769105677",
+    "url": "https://news.ycombinator.com/item?id=46723036",
+    "title": "NeuralVoid – Block AI Telemetry from Copilot, Grammarly, Adobe",
+    "summary": "",
+    "keywords": [
+      "neuralvoid – block ai telemetry"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T18:56:54 1769108214",
+    "url": "https://news.ycombinator.com/item?id=46723614",
+    "title": "Ask HN: What link/news/stories aggregates are you using?",
+    "summary": "With content generated en mass by LLMs, content curation is increasingly important. What link aggregates, curated list of stories/news and newsletters are you using?",
+    "keywords": [
+      "link/news/stories aggregates",
+      "content curation",
+      "link aggregates"
+    ],
+    "sentiment": {
+      "polarity": 0.4,
+      "subjectivity": 1.0,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T18:54:43 1769108083",
+    "url": "https://news.ycombinator.com/item?id=46723581",
+    "title": "Show HN: MatHud – Open-source AI-assisted graphing calculator",
+    "summary": "MatHud pairs an interactive drawing canvas with an AI assistant to help visualize, analyze, and solve real-world geometry, algebra, and calculus problems in real-time.MatHud lets you draw and manipula...",
+    "keywords": [
+      "show hn",
+      "mathud – open-source",
+      "calculator mathud pairs",
+      "interactive drawing canvas",
+      "ai assistant"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T19:16:17 1769109377",
+    "url": "https://news.ycombinator.com/item?id=46723831",
+    "title": "The History of Light",
+    "summary": "",
+    "keywords": [
+      "history",
+      "light"
+    ],
+    "sentiment": {
+      "polarity": 0.4,
+      "subjectivity": 0.7,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T19:53:49 1769111629",
+    "url": "https://news.ycombinator.com/item?id=46724345",
+    "title": "A Simple C Trick for Readable Vector Math",
+    "summary": "",
+    "keywords": [
+      "simple c trick",
+      "readable vector math"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.35714285714285715,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T19:48:25 1769111305",
+    "url": "https://news.ycombinator.com/item?id=46724276",
+    "title": "Show HN: I built a directory of free AI writing tools to support my main product",
+    "summary": "Hi HN, I built a directory of free (no signup/no cc) AI writing tools and wanted to share it with you. It’s basically a collection of preconfigured prompts to quickly improve text, change tone, reply ...",
+    "keywords": [
+      "show hn",
+      "free ai",
+      "main product hi hn",
+      "signup/no cc",
+      "’ s"
+    ],
+    "sentiment": {
+      "polarity": 0.325,
+      "subjectivity": 0.6083333333333334,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T20:42:10 1769114530",
+    "url": "https://news.ycombinator.com/item?id=46724873",
+    "title": "AI Global: Global Sector Trends on Generative AI (1/16/26) [pdf]",
+    "summary": "",
+    "keywords": [
+      "global sector trends",
+      "generative ai",
+      "[ pdf ]"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T20:15:44 1769112944",
+    "url": "https://news.ycombinator.com/item?id=46724603",
+    "title": "Why it's still hard to track Y Combinator Companies",
+    "summary": "",
+    "keywords": [
+      "track y combinator companies"
+    ],
+    "sentiment": {
+      "polarity": -0.2916666666666667,
+      "subjectivity": 0.5416666666666666,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T21:03:03 1769115783",
+    "url": "https://news.ycombinator.com/item?id=46725095",
+    "title": "Tiny Recursive Model creator: \"My life at Samsung became hell\"",
+    "summary": "",
+    "keywords": [
+      "tiny recursive model creator"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.5,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T21:41:59 1769118119",
+    "url": "https://news.ycombinator.com/item?id=46725506",
+    "title": "Show HN: Free depreciation schedule generator for small businesses",
+    "summary": "",
+    "keywords": [
+      "show hn",
+      "free depreciation schedule generator",
+      "small businesses"
+    ],
+    "sentiment": {
+      "polarity": 0.07500000000000001,
+      "subjectivity": 0.6000000000000001,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T21:26:23 1769117183",
+    "url": "https://news.ycombinator.com/item?id=46725321",
+    "title": "Show HN: FOMOmeter – crypto sentiment based on crowd emotions, not price",
+    "summary": "Hi HN,Over the past few years I kept running into the same problem while investing in crypto:\nmost “sentiment” tools either lag price or quietly repackage price data itself.I wanted something simpler ...",
+    "keywords": [
+      "data",
+      "show hn",
+      "fomometer – crypto sentiment",
+      "crowd emotions",
+      "price hi hn"
+    ],
+    "sentiment": {
+      "polarity": 0.009999999999999998,
+      "subjectivity": 0.26166666666666666,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-21T16:40:02 1769013602",
+    "url": "https://news.ycombinator.com/item?id=46708055",
+    "title": "Show HN: S2-lite, an open source Stream Store",
+    "summary": "S2 was on HN for our intro blog post a year ago (https://news.ycombinator.com/item?id=42480105). S2 started out as a serverless API — think S3, but for streams.The idea of streams as a cloud storage p...",
+    "keywords": [
+      "show hn",
+      "open source stream store s2",
+      "intro blog post",
+      "serverless api —",
+      "streams.the idea"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.5,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T12:30:32 1769171432",
+    "url": "https://news.ycombinator.com/item?id=46731694",
+    "title": "Microsoft Gave FBI Keys to Unlock Encrypted Data, Exposing Major Privacy Flaw",
+    "summary": "",
+    "keywords": [
+      "privacy",
+      "fbi keys",
+      "major privacy flaw"
+    ],
+    "sentiment": {
+      "polarity": 0.0625,
+      "subjectivity": 0.5,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T13:42:31 1769175751",
+    "url": "https://news.ycombinator.com/item?id=46732385",
+    "title": "UK Home Secretary's Admission About the Emerging AI Surveillance State",
+    "summary": "",
+    "keywords": [
+      "surveillance",
+      "uk home secretary 's admission",
+      "ai surveillance state"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T13:40:27 1769175627",
+    "url": "https://news.ycombinator.com/item?id=46732371",
+    "title": "Towards a Disaggregated Agent Filesystem on Object Storage",
+    "summary": "",
+    "keywords": [
+      "agent filesystem",
+      "object storage"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T13:32:31 1769175151",
+    "url": "https://news.ycombinator.com/item?id=46732289",
+    "title": "UK Tech Director Disabled After Gaza War Spine Injury",
+    "summary": "",
+    "keywords": [
+      "uk tech director",
+      "gaza war spine injury"
+    ],
+    "sentiment": {
+      "polarity": -0.2,
+      "subjectivity": 0.3,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T14:23:35 1769178215",
+    "url": "https://news.ycombinator.com/item?id=46732823",
+    "title": "TrustTunnel: Open-source VPN protocol by AdGuard",
+    "summary": "",
+    "keywords": [
+      "vpn",
+      "open-source vpn protocol"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T14:10:44 1769177444",
+    "url": "https://news.ycombinator.com/item?id=46732672",
+    "title": "Show HN: FreeMotion – Browser-based Remotion editor with site scraping record",
+    "summary": "Hello HN,I’ve been experimenting with the recent Remotion + Claude Code workflow. While generating video code with LLMs is impressive, the feedback loop felt broken to me. You have to prompt, copy cod...",
+    "keywords": [
+      "show hn",
+      "freemotion –",
+      "remotion editor",
+      "record hello hn",
+      "i ’ ve"
+    ],
+    "sentiment": {
+      "polarity": 0.19999999999999998,
+      "subjectivity": 0.5499999999999999,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T14:10:41 1769177441",
+    "url": "https://news.ycombinator.com/item?id=46732671",
+    "title": "'Cosmic clock' reveals Australian landscapes' history and potential future",
+    "summary": "",
+    "keywords": [
+      "'cosmic clock",
+      "reveals australian landscapes"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.375,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T00:22:58 1769127778",
+    "url": "https://news.ycombinator.com/item?id=46726857",
+    "title": "Why medieval city-builder video games are historically inaccurate (2020)",
+    "summary": "",
+    "keywords": [
+      "medieval city-builder video games"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T15:08:22 1769180902",
+    "url": "https://news.ycombinator.com/item?id=46733387",
+    "title": "ANN v3: 200ms p99 query latency over 100B vectors",
+    "summary": "",
+    "keywords": [
+      "ann v3",
+      "200ms p99 query latency",
+      "100b vectors"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T15:07:29 1769180849",
+    "url": "https://news.ycombinator.com/item?id=46733366",
+    "title": "Vulkan Introduces Roadmap 2026 and New Descriptor Heap Extension",
+    "summary": "",
+    "keywords": [
+      "vulkan introduces roadmap",
+      "new descriptor heap"
+    ],
+    "sentiment": {
+      "polarity": 0.13636363636363635,
+      "subjectivity": 0.45454545454545453,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T15:03:54 1769180634",
+    "url": "https://news.ycombinator.com/item?id=46733315",
+    "title": "Ask HN: How are you handling non-probabilistic security for LLM agents?",
+    "summary": "I've been experimenting with autonomous agents that have shell and database access. The standard approach seems to be \"put safety guardrails in the system prompt\", but that feels like a house of cards...",
+    "keywords": [
+      "security",
+      "non-probabilistic security",
+      "llm agents",
+      "i 've",
+      "autonomous agents"
+    ],
+    "sentiment": {
+      "polarity": 0.2,
+      "subjectivity": 0.35,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T15:00:05 1769180405",
+    "url": "https://news.ycombinator.com/item?id=46733267",
+    "title": "Show HN: Lobsim: L3 Limit Order Book replay and paper execution simulator",
+    "summary": "LOBSIM — Limit Order Book Simulator\nI was doing HFT deep RL research using L3 data and needed a simulator that’s deterministic, correct, fast, and fully observable (fills, events, diagnostics). Python...",
+    "keywords": [
+      "data",
+      "show hn",
+      "l3 limit order book replay",
+      "paper execution simulator lobsim — limit order book simulator i",
+      "rl research"
+    ],
+    "sentiment": {
+      "polarity": 0.1,
+      "subjectivity": 0.5,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T15:52:10 1769183530",
+    "url": "https://news.ycombinator.com/item?id=46733932",
+    "title": "Show HN: Base-1 - A laboratory for computational numerical experiments",
+    "summary": "",
+    "keywords": [
+      "show hn",
+      "computational numerical experiments"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T15:41:17 1769182877",
+    "url": "https://news.ycombinator.com/item?id=46733803",
+    "title": "DOGE improperly accessed and shared Social Security data",
+    "summary": "",
+    "keywords": [
+      "security",
+      "data",
+      "social security data"
+    ],
+    "sentiment": {
+      "polarity": 0.03333333333333333,
+      "subjectivity": 0.06666666666666667,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T15:40:33 1769182833",
+    "url": "https://news.ycombinator.com/item?id=46733797",
+    "title": "The Moral Character of Cryptographic Work (2015) [pdf]",
+    "summary": "",
+    "keywords": [
+      "moral character",
+      "cryptographic work",
+      "[ pdf ]"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.25,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T15:40:02 1769182802",
+    "url": "https://news.ycombinator.com/item?id=46733787",
+    "title": "Waze built the largest crowdsourced surveillance system",
+    "summary": "",
+    "keywords": [
+      "surveillance",
+      "surveillance system"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T15:37:17 1769182637",
+    "url": "https://news.ycombinator.com/item?id=46733753",
+    "title": "A capability-based alternative to Java's SecurityManager (JDK 21+)",
+    "summary": "",
+    "keywords": [
+      "java 's securitymanager",
+      "jdk 21+"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T16:23:18 1769185398",
+    "url": "https://news.ycombinator.com/item?id=46734346",
+    "title": "Show HN: Physio Tracker – a local-only, offline PWA for tracking exercises",
+    "summary": "I built this while doing physiotherapy and struggling to keep a clear record of what I was actually doing week to week.I had exercises from multiple clinicians, things changed over time, and I wanted ...",
+    "keywords": [
+      "tracker",
+      "show hn",
+      "physio tracker –",
+      "offline pwa",
+      "exercises i"
+    ],
+    "sentiment": {
+      "polarity": 0.03333333333333333,
+      "subjectivity": 0.1611111111111111,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T16:18:43 1769185123",
+    "url": "https://news.ycombinator.com/item?id=46734293",
+    "title": "White House shares altered image showing arrest of civil rights attorney in MN",
+    "summary": "",
+    "keywords": [
+      "white house shares",
+      "civil rights attorney"
+    ],
+    "sentiment": {
+      "polarity": -0.025,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T16:12:36 1769184756",
+    "url": "https://news.ycombinator.com/item?id=46734208",
+    "title": "Trump Administration Taps Data Centers for Backup Power Ahead of Snowstorm",
+    "summary": "",
+    "keywords": [
+      "data",
+      "trump administration taps data centers",
+      "backup power"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T16:34:25 1769186065",
+    "url": "https://news.ycombinator.com/item?id=46734490",
+    "title": "Redditor discovers card skimmer script on Canadian retailer checkout page",
+    "summary": "",
+    "keywords": [
+      "redditor discovers card skimmer script",
+      "canadian retailer checkout page"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T17:23:43 1769189023",
+    "url": "https://news.ycombinator.com/item?id=46735097",
+    "title": "Jason Calacanis' Warning To Y Combinator Startups (2010) [video]",
+    "summary": "",
+    "keywords": [
+      "jason calacanis",
+      "y combinator startups",
+      "[ video ]"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T17:10:17 1769188217",
+    "url": "https://news.ycombinator.com/item?id=46734935",
+    "title": "Tracking AI's Contribution to GDP Growth",
+    "summary": "",
+    "keywords": [
+      "ai 's contribution",
+      "gdp growth"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T17:54:45 1769190885",
+    "url": "https://news.ycombinator.com/item?id=46735489",
+    "title": "Route leak incident on January 22, 2026",
+    "summary": "",
+    "keywords": [
+      "leak",
+      "route leak incident"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T17:48:23 1769190503",
+    "url": "https://news.ycombinator.com/item?id=46735406",
+    "title": "Show HN: Claude Tutor – an open source engineering tutor",
+    "summary": "We used Claude Agent SDK to make Claude Tutor. It's main goal is increase human knowledge, understanding, and agency.It's an email and CLI agent to help people level up their software engineering skil...",
+    "keywords": [
+      "show hn",
+      "claude tutor –",
+      "open source engineering tutor",
+      "claude agent sdk",
+      "claude tutor"
+    ],
+    "sentiment": {
+      "polarity": 0.05555555555555555,
+      "subjectivity": 0.31111111111111106,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T17:37:12 1769189832",
+    "url": "https://news.ycombinator.com/item?id=46735270",
+    "title": "Show HN: Directory of 1000 open source alternatives to popular software",
+    "summary": "",
+    "keywords": [
+      "show hn",
+      "open source alternatives",
+      "popular software"
+    ],
+    "sentiment": {
+      "polarity": 0.3,
+      "subjectivity": 0.7,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T17:58:56 1769191136",
+    "url": "https://news.ycombinator.com/item?id=46735545",
+    "title": "Microsoft gave FBI set of BitLocker encryption keys to unlock suspects' laptops",
+    "summary": "",
+    "keywords": [
+      "encryption",
+      "bitlocker encryption keys"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T18:27:31 1769192851",
+    "url": "https://news.ycombinator.com/item?id=46735885",
+    "title": "Terence Tao: A crowdsourced repository for optimization constants?",
+    "summary": "",
+    "keywords": [
+      "terence tao",
+      "optimization constants"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T18:26:03 1769192763",
+    "url": "https://news.ycombinator.com/item?id=46735865",
+    "title": "Dead Man's Switch: How to Automate Crypto Inheritance",
+    "summary": "",
+    "keywords": [
+      "dead man 's switch",
+      "automate crypto inheritance"
+    ],
+    "sentiment": {
+      "polarity": -0.2,
+      "subjectivity": 0.4,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T18:25:34 1769192734",
+    "url": "https://news.ycombinator.com/item?id=46735862",
+    "title": "What Happens to Your Crypto When You Die?",
+    "summary": "",
+    "keywords": [
+      "happens",
+      "crypto"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T18:08:41 1769191721",
+    "url": "https://news.ycombinator.com/item?id=46735649",
+    "title": "CVE-2026-0915: GNU C Library Fixes a Security Issue Present Since 1996",
+    "summary": "",
+    "keywords": [
+      "security",
+      "gnu c library fixes",
+      "security issue"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T18:02:08 1769191328",
+    "url": "https://news.ycombinator.com/item?id=46735579",
+    "title": "Flux2kle.in Fast and Free Image Generator",
+    "summary": "",
+    "keywords": [
+      "free image generator"
+    ],
+    "sentiment": {
+      "polarity": 0.30000000000000004,
+      "subjectivity": 0.7,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T18:39:27 1769193567",
+    "url": "https://news.ycombinator.com/item?id=46736044",
+    "title": "Show HN: Git Extension for Tracking AI Code and Prompts",
+    "summary": "",
+    "keywords": [
+      "show hn",
+      "ai code"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:22:42 1769196162",
+    "url": "https://news.ycombinator.com/item?id=46736610",
+    "title": "EFF calls Daybreak a copyright bully over its EverQuest emulator lawsuit",
+    "summary": "",
+    "keywords": [
+      "eff calls daybreak",
+      "everquest emulator lawsuit"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:21:05 1769196065",
+    "url": "https://news.ycombinator.com/item?id=46736593",
+    "title": "The Long View of History",
+    "summary": "",
+    "keywords": [
+      "long view"
+    ],
+    "sentiment": {
+      "polarity": -0.05,
+      "subjectivity": 0.4,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:20:48 1769196048",
+    "url": "https://news.ycombinator.com/item?id=46736586",
+    "title": "Brussels pushes for stronger cybersecurity oversight of high-risk technology",
+    "summary": "",
+    "keywords": [
+      "cybersecurity",
+      "brussels pushes",
+      "cybersecurity oversight",
+      "high-risk technology"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:19:27 1769195967",
+    "url": "https://news.ycombinator.com/item?id=46736572",
+    "title": "Show HN: UnboundChat – Privacy-First OpenRouter Client for Android and Windows",
+    "summary": "I built this app after struggling to find a good privacy-focused AI chat client for mobile several months ago.I was using OpenWebUI but wanted a local-first solution that didn't require connecting to ...",
+    "keywords": [
+      "show hn",
+      "unboundchat – privacy-first openrouter client",
+      "windows i",
+      "months ago.i",
+      "local-first solution"
+    ],
+    "sentiment": {
+      "polarity": 0.35,
+      "subjectivity": 0.30000000000000004,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:31:44 1769196704",
+    "url": "https://news.ycombinator.com/item?id=46736734",
+    "title": "Iran Govt Fakes Traffic to Mimic Internet Restoration",
+    "summary": "",
+    "keywords": [
+      "iran govt fakes traffic",
+      "mimic internet restoration"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:57:36 1769198256",
+    "url": "https://news.ycombinator.com/item?id=46737071",
+    "title": "Like digging 'your own professional grave': The translators losing work to AI",
+    "summary": "",
+    "keywords": [
+      "like",
+      "digging",
+      "'your",
+      "professional",
+      "grave"
+    ],
+    "sentiment": {
+      "polarity": 0.35,
+      "subjectivity": 0.55,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:50:28 1769197828",
+    "url": "https://news.ycombinator.com/item?id=46736983",
+    "title": "DevCon Fall 2025 – Tracking AI generated code with Git [video]",
+    "summary": "",
+    "keywords": [
+      "devcon fall",
+      "git [ video ]"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:50:03 1769197803",
+    "url": "https://news.ycombinator.com/item?id=46736978",
+    "title": "Show HN: 83 browser-use trajectories, visualized",
+    "summary": "Hey all, Justin here. I previously built Phind, the AI search engine for developers.One of the biggest problems we had there was figuring out what went wrong with bad searches. We had tons of searches...",
+    "keywords": [
+      "show hn",
+      "browser-use trajectories",
+      "ai search engine",
+      "bad searches",
+      "searches ..."
+    ],
+    "sentiment": {
+      "polarity": -0.4555555555555555,
+      "subjectivity": 0.5777777777777778,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:49:38 1769197778",
+    "url": "https://news.ycombinator.com/item?id=46736968",
+    "title": "Steve Yegge Promoting \"Gas Town\" Crypto Coin",
+    "summary": "",
+    "keywords": [
+      "steve yegge",
+      "gas town",
+      "crypto coin"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T19:44:36 1769197476",
+    "url": "https://news.ycombinator.com/item?id=46736894",
+    "title": "AI #152: Brought to You by the Torment Nexus",
+    "summary": "",
+    "keywords": [
+      "ai #",
+      "torment nexus"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T20:39:13 1769200753",
+    "url": "https://news.ycombinator.com/item?id=46737589",
+    "title": "Idea to App Store in 6hrs with Revenue",
+    "summary": "",
+    "keywords": [
+      "app store"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T20:25:58 1769199958",
+    "url": "https://news.ycombinator.com/item?id=46737419",
+    "title": "Compound Interest Calculator",
+    "summary": "",
+    "keywords": [
+      "compound interest calculator"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T20:20:03 1769199603",
+    "url": "https://news.ycombinator.com/item?id=46737351",
+    "title": "Show HN: Cryptography, JWT, and ASN1 Debuggers",
+    "summary": "Hello HN,For the last 3 years, I have been working on a tool that helps me debug ASN.1-encoded data (keys, certificates, Kerberos/CredSSP/SPNEGO/etc tokens, and more), cryptographic operations, and JW...",
+    "keywords": [
+      "data",
+      "show hn",
+      "asn1 debuggers hello hn",
+      "kerberos/credssp/spnego/etc tokens",
+      "cryptographic operations"
+    ],
+    "sentiment": {
+      "polarity": 0.25,
+      "subjectivity": 0.2833333333333333,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T20:19:19 1769199559",
+    "url": "https://news.ycombinator.com/item?id=46737344",
+    "title": "Show HN: Ctx – Context manager for Cloud,K8s VPNs, SSH tunnels, secret managers",
+    "summary": "Hey HN,I built ctx because I was tired of the mental overhead of managing multiple client environments. Every context switch meant: change AWS profile, switch kubeconfig, start the right SSH tunnels, ...",
+    "keywords": [
+      "show hn",
+      "ctx – context manager",
+      "k8s vpns",
+      "ssh tunnels",
+      "secret managers hey hn"
+    ],
+    "sentiment": {
+      "polarity": -0.12285714285714286,
+      "subjectivity": 0.42714285714285716,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T21:01:25 1769202085",
+    "url": "https://news.ycombinator.com/item?id=46737865",
+    "title": "Neko: History of a Software Pet (2022)",
+    "summary": "",
+    "keywords": [
+      "software pet"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T21:13:52 1769202832",
+    "url": "https://news.ycombinator.com/item?id=46738018",
+    "title": "Fear to speak in public to investors and coworkers",
+    "summary": "",
+    "keywords": [
+      "fear",
+      "speak",
+      "public",
+      "investors",
+      "coworkers"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.06666666666666667,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T21:06:29 1769202389",
+    "url": "https://news.ycombinator.com/item?id=46737929",
+    "title": "RedwoodSDK Tutorial with Test2Doc",
+    "summary": "",
+    "keywords": [
+      "redwoodsdk tutorial"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T21:57:45 1769205465",
+    "url": "https://news.ycombinator.com/item?id=46738512",
+    "title": "HN: ReguAction – Turn regulatory URLs into actionable compliance plans",
+    "summary": "",
+    "keywords": [
+      "reguaction –",
+      "regulatory urls",
+      "actionable compliance plans"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T21:42:17 1769204537",
+    "url": "https://news.ycombinator.com/item?id=46738332",
+    "title": "Show HN: Skill Generator – Turn terminal workflows into AI agent skills",
+    "summary": "Vibe-coded a CLI tool that lets you select commands from your console history using a TUI, auto-recognizes parameters, and generates AI skills for Claude/Cursor.https://www.npmjs.com/package/@ezulabs/...",
+    "keywords": [
+      "show hn",
+      "skill generator –",
+      "terminal workflows",
+      "ai agent skills",
+      "cli tool"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T22:23:00 1769206980",
+    "url": "https://news.ycombinator.com/item?id=46738787",
+    "title": "Show HN: NeuralVoid – Block AI Telemetry from Copilot, Grammarly, Adobe",
+    "summary": "NeuralVoid is a free Windows tool that stops AI apps from sending your data home.One click adds blocks to your hosts file (with backup) for:Grammarly\nAdobe (Photoshop/Firefly)\nMicrosoft Copilot/Edge\nM...",
+    "keywords": [
+      "data",
+      "show hn",
+      "neuralvoid – block ai telemetry",
+      "adobe neuralvoid",
+      "free windows tool"
+    ],
+    "sentiment": {
+      "polarity": 0.4,
+      "subjectivity": 0.8,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T22:19:39 1769206779",
+    "url": "https://news.ycombinator.com/item?id=46738746",
+    "title": "Show HN: Statutory – a Turing-complete language in 17th-century legal English",
+    "summary": "",
+    "keywords": [
+      "show hn",
+      "statutory –",
+      "turing-complete language",
+      "legal english"
+    ],
+    "sentiment": {
+      "polarity": 0.1,
+      "subjectivity": 0.1,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T22:08:35 1769206115",
+    "url": "https://news.ycombinator.com/item?id=46738632",
+    "title": "Chemical weapons used on protestors in Iran",
+    "summary": "",
+    "keywords": [
+      "chemical weapons"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-23T22:00:40 1769205640",
+    "url": "https://news.ycombinator.com/item?id=46738554",
+    "title": "Trendshift Stats – GitHub language trends across 20k+ curated repositories",
+    "summary": "",
+    "keywords": [
+      "trendshift stats – github language trends"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-26T13:40:32 1769434832",
+    "url": "https://news.ycombinator.com/item?id=46765508",
+    "title": "AI Finds Vulnerability Chain Leading to Account Takeover and Leaked Bookings",
+    "summary": "",
+    "keywords": [
+      "vulnerability",
+      "vulnerability chain",
+      "account takeover"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-26T13:39:08 1769434748",
+    "url": "https://news.ycombinator.com/item?id=46765489",
+    "title": "Show HN: wt – lightweight Git worktree orchestrator for parallel coding agents",
+    "summary": "I built wt to manage the coordination overhead of running multiple AI coding agents (Claude Code, Codex, etc.) concurrently on the same repository.The problem: I'd spin up 3-4 agents working on differ...",
+    "keywords": [
+      "show hn",
+      "wt – lightweight git worktree orchestrator",
+      "agents i",
+      "coordination overhead",
+      "multiple ai"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.041666666666666664,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-26T13:34:23 1769434463",
+    "url": "https://news.ycombinator.com/item?id=46765432",
+    "title": "Professional Photo Retouching and Restoration",
+    "summary": "",
+    "keywords": [
+      "professional photo"
+    ],
+    "sentiment": {
+      "polarity": 0.1,
+      "subjectivity": 0.1,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-26T13:30:20 1769434220",
+    "url": "https://news.ycombinator.com/item?id=46765395",
+    "title": "If you must use Signal, use Molly",
+    "summary": "",
+    "keywords": [
+      "must",
+      "signal",
+      "molly"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T17:11:39 1769533899",
+    "url": "https://news.ycombinator.com/item?id=46782930",
+    "title": "SoundCloud Data Breach Now on HaveIBeenPwned",
+    "summary": "",
+    "keywords": [
+      "data",
+      "breach",
+      "soundcloud data breach"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T17:32:05 1769535125",
+    "url": "https://news.ycombinator.com/item?id=46783254",
+    "title": "FBI is investigating Minnesota Signal chats tracking ICE",
+    "summary": "",
+    "keywords": [
+      "minnesota signal chats"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T09:01:05 1769504465",
+    "url": "https://news.ycombinator.com/item?id=46777329",
+    "title": "Bassoontracker, Tracking in the Browser",
+    "summary": "",
+    "keywords": [
+      "bassoontracker",
+      "tracking",
+      "browser"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T13:25:53 1769520353",
+    "url": "https://news.ycombinator.com/item?id=46779645",
+    "title": "Xfwl4 – The Roadmap for a Xfce Wayland Compositor",
+    "summary": "",
+    "keywords": [
+      "xfwl4 –",
+      "xfce wayland compositor"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T20:18:50 1769545130",
+    "url": "https://news.ycombinator.com/item?id=46785898",
+    "title": "Show HN: Distributed Training Observability for PyTorch (TraceML)",
+    "summary": "",
+    "keywords": [
+      "show hn",
+      "training observability"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T20:11:58 1769544718",
+    "url": "https://news.ycombinator.com/item?id=46785790",
+    "title": "Tech sector is at lowest share of US employment since early 2021",
+    "summary": "",
+    "keywords": [
+      "tech sector"
+    ],
+    "sentiment": {
+      "polarity": 0.1,
+      "subjectivity": 0.3,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T20:08:26 1769544506",
+    "url": "https://news.ycombinator.com/item?id=46785734",
+    "title": "Show HN: We ship Flutter app updates without resubmitting on AppStore",
+    "summary": "Hi HN,We built Stac a server driven UI framework for Flutter.The idea is simple: instead of shipping a new app release for every UI change, the app renders UI from JSON delivered by the backend. This ...",
+    "keywords": [
+      "show hn",
+      "ship flutter app updates",
+      "appstore hi hn",
+      "ui framework",
+      "flutter.the idea"
+    ],
+    "sentiment": {
+      "polarity": 0.06818181818181818,
+      "subjectivity": 0.40584415584415584,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T15:41:14 1769528474",
+    "url": "https://news.ycombinator.com/item?id=46781444",
+    "title": "Amazon closing its Fresh and Go stores",
+    "summary": "https://www.cnn.com/2026/01/27/food/amazon-fresh-go-closureshttps://www.wsj.com/business/retail/amazon-to-shut-down-all-...",
+    "keywords": [
+      "stores https",
+      "//www.wsj.com/business/retail/amazon-to-shut-down-all- ..."
+    ],
+    "sentiment": {
+      "polarity": 0.3,
+      "subjectivity": 0.5,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T20:53:20 1769547200",
+    "url": "https://news.ycombinator.com/item?id=46786503",
+    "title": "Show HN: SaecretHeaven – Zero-knowledge encrypted photo vault with IPFS backup",
+    "summary": "Hey HN,\nI built SaecretHeaven because I was frustrated that every cloud photo service can see my images. Google scans for content, Apple has master keys, and most services store unencrypted.\nSaecretHe...",
+    "keywords": [
+      "show hn",
+      "saecretheaven – zero-knowledge",
+      "photo vault",
+      "ipfs backup hey hn",
+      "cloud photo service"
+    ],
+    "sentiment": {
+      "polarity": -0.09999999999999998,
+      "subjectivity": 0.35,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T20:35:34 1769546134",
+    "url": "https://news.ycombinator.com/item?id=46786183",
+    "title": "Time Station Emulator",
+    "summary": "",
+    "keywords": [
+      "time station emulator"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T21:08:55 1769548135",
+    "url": "https://news.ycombinator.com/item?id=46786775",
+    "title": "France to ditch US platforms for 'sovereign platform' amid security concerns",
+    "summary": "",
+    "keywords": [
+      "security",
+      "'sovereign platform"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-27T21:18:05 1769548685",
+    "url": "https://news.ycombinator.com/item?id=46786939",
+    "title": "37signals Isn't Smarter Than You, but They Are Different",
+    "summary": "",
+    "keywords": [
+      "n't smarter"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.6,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-28T03:34:45 1769571285",
+    "url": "https://news.ycombinator.com/item?id=46790740",
+    "title": "Android's full desktop interface leaks: New status bar, Chrome Extensions",
+    "summary": "",
+    "keywords": [
+      "android 's",
+      "full desktop interface leaks",
+      "new status",
+      "chrome extensions"
+    ],
+    "sentiment": {
+      "polarity": 0.24318181818181817,
+      "subjectivity": 0.5022727272727273,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-28T06:21:07 1769581267",
+    "url": "https://news.ycombinator.com/item?id=46791742",
+    "title": "Rust at Scale: An Added Layer of Security for WhatsApp",
+    "summary": "",
+    "keywords": [
+      "security"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-22T23:06:05 1769123165",
+    "url": "https://news.ycombinator.com/item?id=46726269",
+    "title": "SVG Path Editor",
+    "summary": "",
+    "keywords": [
+      "svg path editor"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-28T18:28:15 1769624895",
+    "url": "https://news.ycombinator.com/item?id=46799541",
+    "title": "Bonus 203: Correcting the Record in the Social Security/DOGE Case",
+    "summary": "",
+    "keywords": [
+      "social security/doge case"
+    ],
+    "sentiment": {
+      "polarity": 0.03333333333333333,
+      "subjectivity": 0.06666666666666667,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-28T18:23:54 1769624634",
+    "url": "https://news.ycombinator.com/item?id=46799488",
+    "title": "Show HN: Free On-Device AI SDK to Run PyTorch on Mobile NPUs (Open Source)",
+    "summary": "Hello HN,I’m Yeonseok, CEO of ZETIC.ai (ex-Qualcomm AI Research).Deploying AI models to mobile NPUs usually requires deep hardware knowledge and months of tuning. Today, we are changing that.We are op...",
+    "keywords": [
+      "show hn",
+      "free on-device ai sdk",
+      "mobile npus",
+      "open source",
+      "hello hn"
+    ],
+    "sentiment": {
+      "polarity": 0.037500000000000006,
+      "subjectivity": 0.48750000000000004,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-28T18:19:55 1769624395",
+    "url": "https://news.ycombinator.com/item?id=46799425",
+    "title": "Groop – No AI. No Influencers. No Algorithms. No Tracking",
+    "summary": "",
+    "keywords": [
+      "groop –"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-01-28T18:17:18 1769624238",
+    "url": "https://news.ycombinator.com/item?id=46799388",
+    "title": "Memory justifications provide valid indicators of retrieval accuracy across time",
+    "summary": "",
+    "keywords": [
+      "memory justifications",
+      "valid indicators",
+      "retrieval accuracy"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-03T21:04:59 1770152699",
+    "url": "https://news.ycombinator.com/item?id=46877278",
+    "title": "Tractor",
+    "summary": "",
+    "keywords": [
+      "tractor"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T04:15:25 1770264925",
+    "url": "https://news.ycombinator.com/item?id=46895606",
+    "title": "Investigators found 'concerning similarities' between Reedley, Las Vegas labs",
+    "summary": "",
+    "keywords": [
+      "las vegas labs"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T03:54:40 1770263680",
+    "url": "https://news.ycombinator.com/item?id=46895483",
+    "title": "Betterment Data Breach",
+    "summary": "",
+    "keywords": [
+      "data",
+      "breach",
+      "betterment data breach"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T03:48:02 1770263282",
+    "url": "https://news.ycombinator.com/item?id=46895438",
+    "title": "Tenstorrent Cuts 20 Cores from Already-Shipping \"Blackhole\" P150 Cards",
+    "summary": "",
+    "keywords": [
+      "tenstorrent cuts",
+      "p150 cards"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T03:14:28 1770261268",
+    "url": "https://news.ycombinator.com/item?id=46895199",
+    "title": "MLIR-Tutor: Exercises for Learning MLIR (Originally Written for PPoPP 2026)",
+    "summary": "",
+    "keywords": [
+      "mlir-tutor",
+      "exercises",
+      "learning",
+      "mlir",
+      "originally"
+    ],
+    "sentiment": {
+      "polarity": 0.375,
+      "subjectivity": 0.75,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T04:53:56 1770267236",
+    "url": "https://news.ycombinator.com/item?id=46895817",
+    "title": "Show HN: An AI-Powered President Simulator",
+    "summary": "A simulator to be a president of Duckerican, made by AI, with random events generated by AI. Currently the simulator is rather simple, but this reveals a possibility to make more interesting applicati...",
+    "keywords": [
+      "show hn",
+      "president simulator",
+      "random events",
+      "interesting applicati ..."
+    ],
+    "sentiment": {
+      "polarity": 0.1,
+      "subjectivity": 0.4514285714285714,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T05:22:36 1770268956",
+    "url": "https://news.ycombinator.com/item?id=46895972",
+    "title": "When internal hostnames are leaked to the clown",
+    "summary": "",
+    "keywords": [
+      "internal hostnames"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=46896961",
+    "title": "SSL,HTTPS, HTTP/3, and security header checker made by AI",
+    "summary": null,
+    "keywords": [
+      "security",
+      "security header checker"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=46896839",
+    "title": "Show HN: Imagens.app – Free AI image generator and enhancer for creators",
+    "summary": null,
+    "keywords": [
+      "show hn",
+      "imagens.app –",
+      "free ai image generator"
+    ],
+    "sentiment": {
+      "polarity": 0.4,
+      "subjectivity": 0.8,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=46896825",
+    "title": "Kling V3 Video Generator",
+    "summary": null,
+    "keywords": [
+      "v3 video generator"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-02T12:07:46 1770034066",
+    "url": "https://news.ycombinator.com/item?id=46855057",
+    "title": "Making Ferrite Core Inductors at Home",
+    "summary": "",
+    "keywords": [
+      "ferrite core inductors"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T13:32:45 1770298365",
+    "url": "https://news.ycombinator.com/item?id=46899460",
+    "title": "Fixing Noisy Logs with OpenTelemetry Log Deduplication",
+    "summary": "",
+    "keywords": [
+      "noisy logs",
+      "opentelemetry log deduplication"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T13:30:34 1770298234",
+    "url": "https://news.ycombinator.com/item?id=46899434",
+    "title": "Digital Privacy Is the New Casualty of Convenience",
+    "summary": "",
+    "keywords": [
+      "privacy",
+      "digital privacy",
+      "new casualty"
+    ],
+    "sentiment": {
+      "polarity": 0.06818181818181818,
+      "subjectivity": 0.22727272727272727,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T13:19:54 1770297594",
+    "url": "https://news.ycombinator.com/item?id=46899337",
+    "title": "Show HN: Trupositive – Auto-tag infrastructure with Git metadata (Terraform/CFN)",
+    "summary": "Hey HN! I built trupositive after too many 3am incidents where we couldn't trace AWS resources back to their source code.It's a zero-config wrapper that automatically injects Git commit SHA, branch, a...",
+    "keywords": [
+      "show hn",
+      "trupositive – auto-tag infrastructure",
+      "git metadata",
+      "hey hn",
+      "3am incidents"
+    ],
+    "sentiment": {
+      "polarity": 0.25,
+      "subjectivity": 0.25,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T13:17:01 1770297421",
+    "url": "https://news.ycombinator.com/item?id=46899306",
+    "title": "TickTappy – One-tap time tracking for people who hate time tracking",
+    "summary": "",
+    "keywords": [
+      "ticktappy – one-tap time"
+    ],
+    "sentiment": {
+      "polarity": -0.8,
+      "subjectivity": 0.9,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T13:51:39 1770299499",
+    "url": "https://news.ycombinator.com/item?id=46899635",
+    "title": "ICE surveillance tools and tactics raise questions about civil liberties",
+    "summary": "",
+    "keywords": [
+      "surveillance",
+      "ice surveillance tools",
+      "civil liberties"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T13:47:49 1770299269",
+    "url": "https://news.ycombinator.com/item?id=46899590",
+    "title": "Tesla Profit Slumps, but Investors May Not Care",
+    "summary": "",
+    "keywords": [
+      "tesla profit slumps"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T13:45:43 1770299143",
+    "url": "https://news.ycombinator.com/item?id=46899575",
+    "title": "AI Won't Kill the Software Business, Just Its Growth Story",
+    "summary": "",
+    "keywords": [
+      "ai wo n't",
+      "software business",
+      "growth story"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T13:42:53 1770298973",
+    "url": "https://news.ycombinator.com/item?id=46899559",
+    "title": "Substack Data Breach Leads to Leak of Nearly 700k Records",
+    "summary": "",
+    "keywords": [
+      "data",
+      "breach",
+      "leak",
+      "substack data breach",
+      "700k records"
+    ],
+    "sentiment": {
+      "polarity": 0.1,
+      "subjectivity": 0.4,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T14:03:52 1770300232",
+    "url": "https://news.ycombinator.com/item?id=46899732",
+    "title": "Dark Visitors rebrands as Known Agents",
+    "summary": "",
+    "keywords": [
+      "dark visitors rebrands"
+    ],
+    "sentiment": {
+      "polarity": -0.15,
+      "subjectivity": 0.4,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-01T15:43:15 1769960595",
+    "url": "https://news.ycombinator.com/item?id=46846940",
+    "title": "Programming Patterns: The Story of the Jacquard Loom",
+    "summary": "",
+    "keywords": [
+      "jacquard loom"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T14:36:59 1770302219",
+    "url": "https://news.ycombinator.com/item?id=46900093",
+    "title": "Security firm finds Moltbook's 1.5M 'AI agents' run by 17K humans",
+    "summary": "",
+    "keywords": [
+      "security",
+      "security firm",
+      "moltbook 's 1.5m 'ai agents",
+      "17k humans"
+    ],
+    "sentiment": {
+      "polarity": -0.2,
+      "subjectivity": 0.4,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T14:32:20 1770301940",
+    "url": "https://news.ycombinator.com/item?id=46900041",
+    "title": "Show HN: Jest-doctor – catching async leaks that cause flaky Jest tests",
+    "summary": "Hi HN,I built jest-doctor, a custom Jest environment that detects async work leaking across test boundaries, one of the common causes of flaky tests.These leaks usually come from unresolved promises, ...",
+    "keywords": [
+      "show hn",
+      "jest-doctor –",
+      "async leaks",
+      "flaky jest tests hi hn",
+      "custom jest environment"
+    ],
+    "sentiment": {
+      "polarity": 0.016666666666666663,
+      "subjectivity": 0.5499999999999999,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T14:31:14 1770301874",
+    "url": "https://news.ycombinator.com/item?id=46900022",
+    "title": "History of UHF Television: TV Above Channel 13 (2024)",
+    "summary": "",
+    "keywords": [
+      "uhf television"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.1,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-02-05T14:54:55 1770303295",
+    "url": "https://news.ycombinator.com/item?id=46900303",
+    "title": "Signal Bugs and Features to Help Minneapolis",
+    "summary": "",
+    "keywords": [
+      "signal bugs"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
   }
 ]

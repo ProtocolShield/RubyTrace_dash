@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin API Configuration Panel</title>
     <link rel="stylesheet" href="../static/dashboard_styles.css">
+    <link rel="stylesheet" href="../static/admin_responsive.css">
 </head>
 <body data-theme="dark">
     <!-- Sidebar -->
@@ -81,7 +82,7 @@
         <!-- Top Bar -->
         <header class="top-bar">
             <div class="top-bar-left">
-                <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle">
+                <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Open navigation menu" aria-controls="sidebar" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
                 <form class="top-bar-search" id="top-bar-search" onsubmit="event.preventDefault();">
@@ -153,6 +154,7 @@
 
     <!-- Scripts -->
     <script src="../static/dashboard_script.js"></script>
+    <script src="../static/admin_responsive.js"></script>
 </body>
 </html>
     

@@ -19,9 +19,13 @@ def create_sample_data():
 
     # Create sample data sources if they don't exist
     sources = [
-        {'name': 'HackerNews', 'url': 'https://news.ycombinator.com/', 'source_type': 'news', 'category': 'tech', 'risk_level': 'low'},
-        {'name': 'Reddit Privacy', 'url': 'https://reddit.com/r/privacy', 'source_type': 'social', 'category': 'forum', 'risk_level': 'medium'},
-        {'name': 'Dark Web Forum', 'url': 'https://darkweb.example.com', 'source_type': 'dark', 'category': 'forum', 'risk_level': 'high'},
+        {'name': 'HackerNews', 'url': 'https://news.ycombinator.com/', 'source_type': 'surface', 'category': 'news', 'risk_level': 'low'},
+        {'name': 'Reddit Privacy', 'url': 'https://reddit.com/r/privacy', 'source_type': 'surface', 'category': 'forum', 'risk_level': 'medium'},
+        {'name': 'Surface News Feed', 'url': 'https://news.example.com/', 'source_type': 'surface', 'category': 'news', 'risk_level': 'low'},
+        {'name': 'Deep Web Forum', 'url': 'http://deepforum.example.onion', 'source_type': 'deep', 'category': 'forum', 'risk_level': 'high'},
+        {'name': 'Dark Web Marketplace', 'url': 'http://darkmarket.example.onion', 'source_type': 'dark', 'category': 'market', 'risk_level': 'critical'},
+        {'name': 'NIST NVD', 'url': 'https://nvd.nist.gov/vuln/full-listing', 'source_type': 'osint', 'category': 'cve', 'risk_level': 'medium'},
+        {'name': 'CVE Database', 'url': 'https://cve.mitre.org/', 'source_type': 'osint', 'category': 'cve', 'risk_level': 'medium'},
     ]
 
     for source_data in sources:

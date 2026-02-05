@@ -41,6 +41,11 @@ class AlertsManager {
             });
 
             if (!response.ok) {
+                if (response.status === 401 || response.status === 403) {
+                    // Unauthorized - prompt for login or show message
+                    this.showToast('Please login to view alerts', 'warning');
+                    return;
+                }
                 throw new Error(`Failed to load alerts: ${response.status}`);
             }
 

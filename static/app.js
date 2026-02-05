@@ -78,7 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
         loadPosts();
         loadSourcesForFilter();
         initKeywords();
-        initSearchTools();
+        if (typeof initSearchTools === 'function') {
+            initSearchTools();
+        }
         initDownloadsSystem();
         initTorControls();
 
