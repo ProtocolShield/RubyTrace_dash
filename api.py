@@ -1,7 +1,7 @@
 """
 API for accessing the privacy OSINT data.
 """
-from flask import Flask, jsonify, request, send_from_directory, session, redirect, send_file
+from flask import Flask, jsonify, request, send_from_directory, session, redirect, send_file, render_template
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import json
@@ -16,7 +16,6 @@ from utils.json_utils import load_existing_data, save_data
 from nlp_utils import enrich_post_with_nlp
 from searchers.email_search import search_email, clear_email_cache
 from searchers.phone_search import search_phone, clear_phone_cache
-from crawlers.crawler_scheduler import start_crawler_scheduler, stop_crawler_scheduler, crawler_scheduler
 from datetime import datetime
 from models import db, ApiKey, Source, KeywordAlert, ScrapeLog, Bot, BotLog, DataSource, RawData, Entity, Relationship, SearchIndex, BotSchedule, GlobalConfig
 from api_integrations import api_manager
@@ -30,7 +29,6 @@ from onion_admin import onion_admin
 from radar_integration import radar_api
 from auth_models import User, AccessLog, APIRateLimit, MapData
 from auth_utils import require_auth, require_rate_limit, SecurityUtils
-from user_routes import user_routes
 
 # Set up logger
 logger = logging.getLogger(__name__)
@@ -43,7 +41,6 @@ CORS(app)
 app.register_blueprint(secure_api)
 app.register_blueprint(onion_admin)
 app.register_blueprint(radar_api)
-app.register_blueprint(user_routes)
 
 # Configure sessions
 app.secret_key = os.environ.get('SECRET_KEY', 'privacy-osint-secret-key')
@@ -103,7 +100,11 @@ with app.app_context():
 @app.route('/')
 def landing():
     """Serve the new homepage with integrated OSINT dashboard."""
-    return send_from_directory('static', 'homepage.html')
+    # Prefer the restored template if present; fall back to static homepage.html
+    try:
+        return render_template('new_homepage.html')
+    except Exception:
+        return send_from_directory('static', 'homepage.html')
 
 @app.route('/eng/login')
 def admin_login():
@@ -2374,7 +2375,7 @@ def run_api():
             logging.warning(f"Could not initialize test sources: {e}")
     
     logging.info(f"Starting API server on http://{API_HOST}:{API_PORT}")
-    app.run(host=API_HOST, port=API_PORT, debug=False)
+    app.run(host=API_HOST, port=API_PORT, debug=True)
 
 @app.route('/api/bots', methods=['GET'])
 def list_bots():

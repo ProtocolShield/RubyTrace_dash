@@ -19,7 +19,7 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='new_homepage_styles.css') }}">
 </head>
-<body data-theme="dark">
+<body data-theme="auto">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -52,9 +52,7 @@
                 </button>
                 
                 <div class="auth-buttons">
-                    <a href="{{ url_for('user_routes.login_page') }}" class="btn btn-outline">Login</a>
-                    <a href="{{ url_for('user_routes.register_page') }}" class="btn btn-primary">Register</a>
-                    <a href="/eng/login" class="btn btn-admin">Admin</a>
+                    <a href="/eng/login" class="btn btn-admin">Admin Login</a>
                 </div>
             </div>
             
@@ -373,6 +371,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="{{ url_for('static', filename='new_homepage_script.js') }}"></script>
+    <script src="{{ url_for('static', filename='homepage-script.js') }}?v=2"></script>
 </body>
 </html>

@@ -17920,5 +17920,621 @@
       "subjectivity": 0.0,
       "assessment": "neutral"
     }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T01:08:04 1778807284",
+    "url": "https://news.ycombinator.com/item?id=48143284",
+    "title": "Access to frontier AI will soon be limited by economic and security constraints",
+    "summary": "",
+    "keywords": [
+      "security",
+      "frontier ai",
+      "security constraints"
+    ],
+    "sentiment": {
+      "polarity": 0.0642857142857143,
+      "subjectivity": 0.17142857142857143,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-14T20:41:48 1778791308",
+    "url": "https://news.ycombinator.com/item?id=48140953",
+    "title": "Tesla Wall Connector bootloader bypasses the firmware downgrade ratchet",
+    "summary": "",
+    "keywords": [
+      "tesla wall connector bootloader bypasses",
+      "firmware downgrade ratchet"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-14T21:50:17 1778795417",
+    "url": "https://news.ycombinator.com/item?id=48141732",
+    "title": "OVMS: Open source electric vehicle remote monitoring, diagnosis and control",
+    "summary": null,
+    "keywords": [
+      "open source",
+      "electric vehicle"
+    ],
+    "sentiment": {
+      "polarity": -0.05,
+      "subjectivity": 0.35,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-14T22:37:40 1778798260",
+    "url": "https://news.ycombinator.com/item?id=48142188",
+    "title": "Ontario auditors find doctors' AI note takers routinely blow basic facts",
+    "summary": "",
+    "keywords": [
+      "ontario auditors",
+      "ai note takers",
+      "basic facts"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.125,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48144985",
+    "title": "Lookup.disclose.io – find the right security contact for any asset",
+    "summary": null,
+    "keywords": [
+      "security",
+      "lookup.disclose.io –",
+      "right security contact"
+    ],
+    "sentiment": {
+      "polarity": 0.2857142857142857,
+      "subjectivity": 0.5357142857142857,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T06:35:13 1778826913",
+    "url": "https://news.ycombinator.com/item?id=48145265",
+    "title": "Mullvad VPN users have connectivity issues with Supabase",
+    "summary": "",
+    "keywords": [
+      "vpn",
+      "mullvad vpn users",
+      "connectivity issues"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T06:10:25 1778825425",
+    "url": "https://news.ycombinator.com/item?id=48145118",
+    "title": "Universal High Quality OCR and Book Translator",
+    "summary": "",
+    "keywords": [
+      "universal high quality ocr",
+      "book translator"
+    ],
+    "sentiment": {
+      "polarity": 0.08,
+      "subjectivity": 0.26999999999999996,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48149346",
+    "title": "Show HN: Kadō – habit tracker app for iOS, open source and privacy-friendly",
+    "summary": null,
+    "keywords": [
+      "tracker",
+      "show hn",
+      "kadō – habit tracker app"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.5,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T11:37:17 1778845037",
+    "url": "https://news.ycombinator.com/item?id=48147339",
+    "title": "Welcome to the Strip Mining Era of OSS Security",
+    "summary": "",
+    "keywords": [
+      "security",
+      "oss security"
+    ],
+    "sentiment": {
+      "polarity": 0.8,
+      "subjectivity": 0.9,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48149661",
+    "title": "Social news aggregator Digg returns as AI and social media news aggregator",
+    "summary": null,
+    "keywords": [
+      "social news aggregator digg returns",
+      "social media news aggregator"
+    ],
+    "sentiment": {
+      "polarity": 0.03333333333333333,
+      "subjectivity": 0.06666666666666667,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T16:31:02 1778862662",
+    "url": "https://news.ycombinator.com/item?id=48150624",
+    "title": "Skyscraper-Size Asteroids, Failed Supernovas, and Interstellar Visitors",
+    "summary": "",
+    "keywords": [
+      "skyscraper-size asteroids",
+      "interstellar visitors"
+    ],
+    "sentiment": {
+      "polarity": -0.5,
+      "subjectivity": 0.3,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T16:20:42 1778862042",
+    "url": "https://news.ycombinator.com/item?id=48150487",
+    "title": "Doctor's AI notetaker may be making things up, Ontario audit finds",
+    "summary": "",
+    "keywords": [
+      "doctor 's ai notetaker",
+      "ontario audit"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48151043",
+    "title": "The Download: China's AI drama factory and the WHO's missing health targets",
+    "summary": null,
+    "keywords": [
+      "china 's ai drama factory",
+      "health targets"
+    ],
+    "sentiment": {
+      "polarity": -0.2,
+      "subjectivity": 0.05,
+      "assessment": "negative"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T16:50:59 1778863859",
+    "url": "https://news.ycombinator.com/item?id=48150893",
+    "title": "ChatGPT now supports Plaid connector",
+    "summary": "",
+    "keywords": [
+      "supports plaid connector"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T16:41:19 1778863279",
+    "url": "https://news.ycombinator.com/item?id=48150752",
+    "title": "We spent 8ys making vector databases faster. Then, we stopped",
+    "summary": "",
+    "keywords": [
+      "vector databases"
+    ],
+    "sentiment": {
+      "polarity": -0.1,
+      "subjectivity": 0.1,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T17:15:58 1778865358",
+    "url": "https://news.ycombinator.com/item?id=48151237",
+    "title": "I designed a nibble-oriented CPU in Verilog to build a scientific calculator",
+    "summary": "",
+    "keywords": [
+      "scientific calculator"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T17:34:26 1778866466",
+    "url": "https://news.ycombinator.com/item?id=48151471",
+    "title": "Linus Torvalds declares AI-fueled code surges as the new normal",
+    "summary": "",
+    "keywords": [
+      "linus torvalds",
+      "code surges"
+    ],
+    "sentiment": {
+      "polarity": 0.1431818181818182,
+      "subjectivity": 0.5522727272727272,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T17:34:11 1778866451",
+    "url": "https://news.ycombinator.com/item?id=48151464",
+    "title": "OpenAI's KOSA Endorsement Is Regulatory Capture with a Smiley Face",
+    "summary": "",
+    "keywords": [
+      "openai 's kosa endorsement"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48151171",
+    "title": "Predictions for the Next 30 Years of Cybersecurity (2018)",
+    "summary": null,
+    "keywords": [
+      "cybersecurity"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T17:59:01 1778867941",
+    "url": "https://news.ycombinator.com/item?id=48151750",
+    "title": "Ghost of long-extinct ancestor lives on in people today",
+    "summary": "",
+    "keywords": [
+      "long-extinct ancestor"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T17:55:46 1778867746",
+    "url": "https://news.ycombinator.com/item?id=48151718",
+    "title": "Build a Full-Featured Text Editor from Scratch (Rust)",
+    "summary": "",
+    "keywords": [
+      "text editor"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T18:56:09 1778871369",
+    "url": "https://news.ycombinator.com/item?id=48152428",
+    "title": "Hackers have breached tank readers at US gas stations",
+    "summary": "",
+    "keywords": [
+      "tank readers",
+      "gas stations"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48152331",
+    "title": "Near-invisible solar cells that could turn windows into power generators",
+    "summary": null,
+    "keywords": [
+      "near-invisible solar cells",
+      "power generators"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48152115",
+    "title": "Show HN: Incorporator, Turn any API/File into typed Python graph with pipeline",
+    "summary": null,
+    "keywords": [
+      "show hn",
+      "python graph"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48152663",
+    "title": "Stop state surveillance in Canada. Stop Bill C-22",
+    "summary": null,
+    "keywords": [
+      "surveillance",
+      "state surveillance",
+      "bill c-22"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T19:58:37 1778875117",
+    "url": "https://news.ycombinator.com/item?id=48153084",
+    "title": "Metriplex – L1 blockchain where identity is a fractal attractor, not a number",
+    "summary": "",
+    "keywords": [
+      "identity",
+      "metriplex – l1 blockchain",
+      "fractal attractor"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T19:49:21 1778874561",
+    "url": "https://news.ycombinator.com/item?id=48153003",
+    "title": "The Apple macOS Security Update Review (3 macOS Versions; 82 Unique CVEs)",
+    "summary": "",
+    "keywords": [
+      "security",
+      "apple macos security update review",
+      "macos versions",
+      "unique cves"
+    ],
+    "sentiment": {
+      "polarity": 0.375,
+      "subjectivity": 1.0,
+      "assessment": "positive"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48153277",
+    "title": "Show HN: Profine – optimize your PyTorch training script before the run",
+    "summary": null,
+    "keywords": [
+      "show hn",
+      "profine – optimize",
+      "pytorch training script"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48153256",
+    "title": "The Link Between Flock Safety, Dunwoody, and Attorney General Chris Carr",
+    "summary": null,
+    "keywords": [
+      "flock safety",
+      "attorney general chris carr"
+    ],
+    "sentiment": {
+      "polarity": 0.05000000000000002,
+      "subjectivity": 0.5,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48153170",
+    "title": "I built a bid scoring tool for construction subcontractors",
+    "summary": null,
+    "keywords": [
+      "construction subcontractors"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-15T21:00:31 1778878831",
+    "url": "https://news.ycombinator.com/item?id=48153750",
+    "title": "Demystifying the Silence of Correctness Bugs in PyTorch Compiler",
+    "summary": "",
+    "keywords": [
+      "correctness bugs",
+      "pytorch compiler"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-14T02:37:22 1778726242",
+    "url": "https://news.ycombinator.com/item?id=48130468",
+    "title": "Gaining control of every projector and camera on campus",
+    "summary": "",
+    "keywords": [
+      "gaining",
+      "control",
+      "every",
+      "projector",
+      "camera"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48160447",
+    "title": "My Mom taught me HTML (and the rest was history)",
+    "summary": null,
+    "keywords": [
+      "taught",
+      "html",
+      "rest",
+      "history",
+      "none"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-16T13:48:20 1778939300",
+    "url": "https://news.ycombinator.com/item?id=48160256",
+    "title": "Repositories Are Human/Agent Knowledge Factories – Sigplan Blog",
+    "summary": "",
+    "keywords": [
+      "human/agent knowledge factories – sigplan blog"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-14T07:36:20 1778744180",
+    "url": "https://news.ycombinator.com/item?id=48132232",
+    "title": "After 8 years, I rewrote my open-source PyTorch curvature library",
+    "summary": "",
+    "keywords": [
+      "i rewrote",
+      "open-source pytorch curvature library"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-16T15:21:45 1778944905",
+    "url": "https://news.ycombinator.com/item?id=48160991",
+    "title": "Tesla reveals two Robotaxi crashes involving teleoperators",
+    "summary": "",
+    "keywords": [
+      "tesla reveals",
+      "robotaxi crashes"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": "2026-05-16T16:56:22 1778950582",
+    "url": "https://news.ycombinator.com/item?id=48161845",
+    "title": "OpenAI's Founding Story Told Through Musk vs. Altman Trial Exhibits",
+    "summary": "",
+    "keywords": [
+      "openai 's",
+      "altman trial exhibits"
+    ],
+    "sentiment": {
+      "polarity": 0.0,
+      "subjectivity": 0.0,
+      "assessment": "neutral"
+    }
+  },
+  {
+    "source": "Hacker News",
+    "timestamp": null,
+    "url": "https://news.ycombinator.com/item?id=48161644",
+    "title": "Lawful access bill could lead to exit from Canada, major VPN provider says",
+    "summary": null,
+    "keywords": [
+      "vpn",
+      "lawful access bill",
+      "major vpn provider"
+    ],
+    "sentiment": {
+      "polarity": 0.03125,
+      "subjectivity": 0.25,
+      "assessment": "neutral"
+    }
   }
 ]
